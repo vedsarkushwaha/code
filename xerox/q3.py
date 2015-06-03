@@ -1,0 +1,37 @@
+def lagrange(lst):
+	x=len(lst)
+	const=[]
+	res=[]
+	#print lst
+	for i in xrange(x,x+5):
+		for j in xrange(x):
+			num=float(1)
+			dem=float(1)
+			sm=float(0)
+			for k in range(x):
+				if j==k or lst[j]==lst[k]:
+					continue
+				num*=(i-lst[k])
+				dem*=(lst[j]-lst[k])
+			sm+=(num/dem)
+			const.append(sm)
+		tmp=float(0)
+		for j in xrange(x):
+			tmp+=(const[j]*lst[j])
+		res.append(tmp)
+	return res
+N=int(raw_input())
+lst=[[] for i in range(8)]
+for i in range(N):
+	ind,val=map(float,raw_input().split(","))
+	lst[int(ind)].append(val)
+explst=[[] for i in range(8)]
+for i in range(1,8):
+	explst[i]=lagrange(lst[i])
+#zip(*explst)
+print "35"
+for i in range(4):
+	cnt=1
+	for j in explst[1:]:
+		print str(cnt)+","+str(j[i])
+		cnt+=1

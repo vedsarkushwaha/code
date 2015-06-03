@@ -1,0 +1,23 @@
+def power(x,y,n):
+	if(y==0):
+		return 1
+	temp=power(x, y/2,n)
+	if (y%2 == 0):
+		return (temp*temp)%n
+	else:
+		return (x*temp*temp)%n
+
+T=int(raw_input())
+for i in range(T):
+	x,m,n=map(int,raw_input().split(" "))
+	x_p_m1=power(x,m+1,n)
+	if x_p_m1==0:
+		x_p_m1=n-1
+	else:
+		x_p_m1-=1
+	b=x-1
+	a=x_p_m1
+	for i in range(1,10000000):
+		if b*i % n ==a:
+			print i
+			break

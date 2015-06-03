@@ -1,0 +1,33 @@
+#define sz 100
+#include<cstdio>
+#include<cmath>
+using namespace std;
+int prm[sz+1];
+void init() {
+	int i;
+	for(i=0;i<=sz;i++)
+		prm[i]=1;
+	prm[0]=0;
+	prm[1]=0;
+}
+void seive_fun() {
+	int i,j,k,limit;
+	init();
+	limit=sqrt(sz);
+	for(i=2;i<=limit;i++) {
+		if(prm[i]==1) {
+			k=sz/i;
+			for(j=1;j<=k;j++)
+				prm[i*j]=0;
+		}
+	}
+}
+void prnt_arr() {
+	int i;
+	for(i=0;i<=sz;i++)
+		printf("%d ",prm[i]);
+}
+int main() {
+	seive_fun();
+	prnt_arr();
+}

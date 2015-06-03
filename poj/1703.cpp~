@@ -1,0 +1,21 @@
+#include<cstdio>
+#include<set>
+#include<vector>
+#include<algorithm>
+using namespace std;
+class pair {
+	int d1,d2;
+};
+int main() {
+	vector<pair> data(100000,pair<0,0>);
+	set<pair<int,int>> rem;
+	pair temp;
+	char ch;
+	int T,N,M;
+	scanf("%d",&T);
+	while(T--) {
+		scanf("%d%d",&N,&M);
+		scanf("%c%d%d",&ch,&(temp.d1),&(temp.d2));
+		int flag=0;
+		for(int i=0;i<M;i++) {
+			

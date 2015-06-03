@@ -1,0 +1,88 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#include<cctype>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0,T
+using namespace std;
+
+int main() {
+	char str[110],newstr[110],*tmpstr;
+	var(int);
+	while((cin>>str)) {
+		tmp1=0;tmp2=0
+		//chk for error
+		newstr[0]='\0';
+		tmp3=strlen(str);
+		//pf("%s %d\n",str,tmp3);
+		if((str[0]>='A')&&(str[0]<='Z')) {
+			pf("Error!\n");
+			continue;
+		}
+		else if((str[0]=='_')||(str[tmp3-1]=='_')) {
+			pf("Error!\n");
+			continue;
+		}
+		else if(strchr(str,'_')!=NULL) {
+			//pf(" ee ");
+			fflush(stdout);
+			tmp1=0;
+			fr(i,0,tmp3) {
+				if((str[i]>='A')&&(str[i]<='Z')) {
+					pf("Error!\n");
+					tmp1=1;
+					break;
+				}
+			}
+			//cout<<str;
+		}
+		//chk for multiple __
+		if((tmp1==0)&&(strchr(str,'_')!=NULL)) {
+			//pf("e");
+			fflush(stdout);
+			tmp2=0;
+			tmpstr=strchr(str,'_');
+			while(tmpstr!=NULL) {
+				if(((tmpstr-str)<tmp3-1)&&(*(tmpstr+1)=='_')) {
+					pf("Error!\n");
+					tmp2=1;
+					break;
+				}
+				tmpstr=strchr(tmpstr+1,'_');
+			}
+		}
+		if((tmp1==0)&&(tmp2==0)) {
+			//pf(" c ");
+			j=0;
+			fr(i,0,tmp3) {
+				if(str[i]=='_') {
+					i++;
+					newstr[j++]=toupper(str[i]);
+				}
+				else if((str[i]>='A')&&(str[i]<='Z')) {
+					newstr[j++]='_';
+					newstr[j++]=tolower(str[i]);
+				}
+				else
+					newstr[j++]=str[i];
+			}
+			newstr[j]='\0';
+			pf("%s\n",newstr);
+		}
+	}
+	return 0;
+}

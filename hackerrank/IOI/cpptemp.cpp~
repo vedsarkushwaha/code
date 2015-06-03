@@ -1,0 +1,48 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#define f(i,m,n) for(i=0;i<n;i++)
+#define ull unsigned long long
+#define sc scanf
+#define pf printf
+using namespace std;
+
+void init(ull *a,int len) {
+	int i;
+	f(i,0,len)
+		a[i]=0;
+}
+void print(ull *a,int len) {
+	int i;
+	f(i,0,len)
+		printf("%llu",a[i]);
+}
+
+int main() {
+	int a1,a2,b1,b2,c1,c2,d1,d2;
+	pair<int,int> pa;
+	map<int,int> ma;
+	map<int,int>::iterator it;
+	sc("%d%d",&a1,&a2);sc("%d%d",&b1,&b2);sc("%d%d",&c1,&c2);
+	pa.first=(a1-b1)+c1;pa.second=(a2-b2)+c2;
+	ma.insert(pa);
+	pa.first=c1-(a1-b1);pa.second=c2-(a2-b2);
+	ma.insert(pa);
+	pa.first=(c1-b1)+a1;pa.second=(c2-b2)+a2;
+	ma.insert(pa);
+	pa.first=a1-(c1-b1);pa.second=a2-(c2-b2);
+	ma.insert(pa);
+	for(it=ma.begin();it!=ma.end();++it) {
+		printf("%d %d\n",(*it).first,(*it).second);
+	}	
+	return 0;
+}

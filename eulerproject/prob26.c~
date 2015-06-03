@@ -1,0 +1,9 @@
+#include<iostream>
+using namespace std;
+int main() {
+	long double res;
+	int i;
+	for(i=1;i<1000;i++) {
+		res=1/(long double)i;
+		cout<<res<<endl;
+	}

@@ -1,0 +1,51 @@
+import numpy as np
+#def mul(a,b):
+#	zip_b = zip(*b)
+#	return [[sum(ele_a*ele_b for ele_a, ele_b in zip(row_a, col_b)) for col_b in zip_b] for row_a in a]
+def mul(A, B):
+	rows_A = len(A)
+	cols_A = len(A[0])
+	rows_B = len(B)
+	cols_B = len(B[0])
+	if cols_A != rows_B:
+		print "Cannot multiply the two matrices. Incorrect dimensions."
+		return
+	C = [[0 for row in range(cols_B)] for col in range(rows_A)]
+	#print C
+	for i in range(rows_A):
+		for j in range(cols_B):
+			for k in range(cols_A):
+				C[i][j] += A[i][k] * B[k][j]
+	return C
+
+def power(x,y):
+	if y==0:
+		return [[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,1,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,1,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]]
+	temp=power(x, y/2)
+	if (y%2 == 0):
+		return mul(temp,temp)
+	else:
+		return mul(x,mul(temp,temp))
+
+def mul_vec(a,b):
+	s=0
+	for i in range(15):
+		s+=(a[i]*b[i])
+	return s
+
+N=int(raw_input())
+K=int(raw_input())
+arr=[0]*15
+brick=[0]*15
+tmp1=map(int,raw_input().split(" "))
+for i in tmp1:
+	brick[i-1]+=1
+for i in range(15):
+	for j in range(15):
+		arr[i]+=(arr[j]*brick[j])
+	arr[i]+=brick[i]
+if N<=15:
+	print arr[N-1]
+else:
+	mat=[[brick[15],brick[14],brick[13],brick[12],brick[11],brick[10],brick[9],brick[8],brick[7],brick[6],brick[5],brick[4],brick[3],brick[2],brick[1]],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,1,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,1,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0]]
+	print mul_vec(power(mat,(N-15))[0],arr[101:116])

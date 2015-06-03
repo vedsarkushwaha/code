@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1=0,tmp2=0,tmp3=0,tmp=0,tmp4=0,tmp5=0,flag=0,T=0,N=0,Q=0
+#define pb push_back
+#define vi vector<int>
+#define vii vector<pair<int,int> >
+#define vl vector<ll>
+#define vll vector<pair<ll,ll> >
+using namespace std;
+struct node {
+	list<node> lst[26];
+};
+int main() {
+	var(ll);
+	string str;
+	node tree;
+	list<node>::iterator it;
+	node ndtmp,ndtmp1,ndtmp2;
+	while(1) {
+		cin>>str;
+		it=tree.lst.begin();
+		fr(i,0,str.length()) {
+			it->lst[str[i]-'a'].pb(ndtmp);
+			it=(it->lst[str[i]-'a']
+		}
+	}
+	return 0;
+}

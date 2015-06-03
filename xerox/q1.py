@@ -1,0 +1,42 @@
+from operator import itemgetter
+
+def getStockSpikesAndDips(string):
+	string=string.lstrip('[')
+	string=string.rstrip(']')
+	lst=string.split("),(")
+	lst[0]=lst[0].lstrip('(')
+	lst[-1]=lst[-1].rstrip(')')
+	val=[]
+	dl=[]
+	#tmp=0
+	for i in lst:
+		tmp1,tmp2=map(int,i.split(","))
+		val.append(tmp2)
+		if len(val)>1:
+			dl.append([abs(val[-1]-val[-2]),lst.index(i)+1])
+	#for i in val:
+		#print i
+	dl.sort()
+	sm=0
+	for i in dl:
+		sm+=i[0]
+	avg=sm/len(dl)
+	#print "avg"+str(avg)
+	outlier=[]
+	for i in dl:
+		if i[0]>avg:
+			outlier.append(i)
+	#print outlier
+	outlier.sort(key=itemgetter(1))
+	res="["
+	for i in range(len(outlier)/2):
+		if i==(len(outlier)/2)-1:
+			res+="("+str(outlier[i][1])+","+str(outlier[i+1][1]-1)+")"
+		else:
+			res+="("+str(outlier[i][1])+","+str(outlier[i+1][1]-1)+"),"	
+	res+=']'
+	return res
+	
+if __name__=="__main__":
+	string=raw_input()
+	print getStockSpikesAndDips(string)

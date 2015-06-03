@@ -1,0 +1,32 @@
+#include<cstdio>
+#include<cmath>
+using namespace std;
+
+int arr[1000000];
+double find(int x,int y) {
+	if(x>y)
+		return 1;
+	else
+		return pow(arr[x],find(x+1,y));
+}
+
+int main() {
+	int N,Q,x,y;
+	double ans;
+	long long a;
+	scanf("%d",&N);
+	int i;
+	for(i=1;i<=N;i++)
+		scanf("%d",&arr[i]);
+	scanf("%d",&Q);
+	while(Q--) {
+		scanf("%d%d",&x,&y);
+		ans=find(x,y);
+		a=(long long)ans;
+		if(a%2==0)
+			printf("Even\n");
+		else
+			printf("Odd\n");
+	}
+	return 0;
+}

@@ -1,0 +1,13 @@
+#include<cstdio>
+using namespace std;
+int main() {
+	int a;
+	while(1) {
+		scanf("%d",&a);
+		if((a&1)==0)
+			printf("Even\n");
+		else
+			printf("Odd\n");
+	}
+	return 0;
+}

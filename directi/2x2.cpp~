@@ -1,0 +1,152 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0
+using namespace std;
+struct node {
+	int ss[4][4];
+};
+int mat[4][4];
+vector<node> vec;
+void print() {
+	var(int);
+	fr(i,0,4) {
+		fr(j,0,4) {
+			pf("%d ",mat[i][j]);
+		}
+		pf("\n");
+	}
+}
+int chk(int x,int y) {
+	var(int);
+	tmp=mat[x][y];
+	fr(i,0,4) {
+		if((i!=x)&&(mat[i][y]==tmp))
+			return 0;
+		if((i!=y)&&(mat[x][i]==tmp))
+			return 0;
+	}
+	if((x<2)&&(y<2)) {
+		fr(i,0,2) {
+			fr(j,0,2) {
+				if((i==x) && (j==y))
+					continue;
+				if(mat[i][j]==tmp)
+					return 0;
+			}
+		}
+	}
+	else if((x<2)&&(y>1)) {
+		fr(i,0,2) {
+			fr(j,2,4) {
+				if((i==x) && (j==y))
+					continue;
+				if(mat[i][j]==tmp)
+					return 0;
+			}
+		}
+	}
+	else if((x>1)&&(y<2)) {
+		fr(i,2,4) {
+			fr(j,0,2) {
+				if((i==x) && (j==y))
+					continue;
+				if(mat[i][j]==tmp)
+					return 0;
+			}
+		}
+	}
+	else if((x>1)&(y>1)) {
+		fr(i,2,4) {
+			fr(j,2,4) {
+				if((i==x) && (j==y))
+					continue;
+				if(mat[i][j]==tmp)
+					return 0;
+			}
+		}
+	}
+	else {
+		pf("Wrong parameter\n");
+		return 0;
+	}
+	return 1;
+}
+
+void fillSudoku(int x,int y) {
+	var(int);
+	node sstmp;
+	//vector<int> tmpmat;
+	if(x==-1) {
+		x=0;y=0;
+	}
+	else {
+		if(y==3) {
+			x++;
+			y=0;
+		}
+		else
+			y++;
+	}
+	fr(i,1,5) {
+		mat[x][y]=i;
+		if(chk(x,y)) {
+			if((x==3) && (y==3)) {
+				//copy the values to vector
+				//pf("\n");
+				//print();
+				//pf("\n");
+				//tmpmat.clear();
+				fr(j,0,4) {
+					fr(k,0,4) {
+						sstmp.ss[j][k]=mat[j][k];
+					}
+				}
+				vec.push_back(sstmp);
+			}
+			else {
+				fillSudoku(x,y);
+				//mat[x][y]=0;
+			}
+		}
+	}
+	mat[x][y]=0;
+}
+int main() {
+	fillSudoku(-1,-1);
+	//pf("%lu",vec.size());
+	var(int);
+	int T,inp[4][4];
+	sc("%d",&T);
+	int vrnc,tmpvrnc;
+	while(T--) {
+		vrnc=100000;
+		fr(i,0,4)
+			fr(j,0,4)
+				sc("%d",&inp[i][j]);
+		fr(k,0,vec.size()) {
+			tmp=0;
+			tmpvrnc=0;
+			fr(i,0,4)
+				fr(j,0,4)
+					tmpvrnc+=((inp[i][j]-vec[k].ss[i][j])*(inp[i][j]-vec[k].ss[i][j]));
+			vrnc=min(vrnc,tmpvrnc);
+		}
+		pf("%d\n",vrnc);
+	}	
+	return 0;
+}

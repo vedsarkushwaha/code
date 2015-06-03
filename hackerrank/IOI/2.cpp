@@ -1,0 +1,73 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#define f(i,m,n) for(i=0;i<n;i++)
+#define ull unsigned long long
+#define sc scanf
+#define pf printf
+using namespace std;
+
+void init(ull *a,int len) {
+	int i;
+	f(i,0,len)
+		a[i]=0;
+}
+void print(int *a,int len) {
+	int i;
+	f(i,0,len)
+		printf("%d ",a[i]);
+}
+
+int bin_search(int *arr,int low,int high,int ele) {
+	int mid;
+	while(low<=high) {
+		mid=(low+high)/2;
+		if(arr[mid]==ele)
+			return mid;
+		else if(ele<arr[mid])
+			high=mid-1;
+		else
+			low=mid+1;
+	}
+	return -1;
+}
+int main() {
+	int Q;
+	string str;
+	int A,B,M,V,i,temp1,temp2,cnt;
+	set<int> myset;
+	set<int>::iterator it1;
+	set<int>::iterator it2;
+	sc("%d",&Q);
+	while(Q--) {
+		cin>>str;
+		if(str.compare("ADD")==0) {
+			sc("%d",&V);
+			myset.insert(V);
+		}
+		else {
+			cnt=0;
+			sc("%d%d%d",&A,&B,&M);
+			it1=myset.find(A);
+			it2=myset.find(B);
+			while(it1!=it2) {
+				if((*it1)%M==0)
+					cnt++;
+				it1++;
+			}
+			if((it1!=myset.end()) && ((*it1)%M==0))
+				cnt++;
+			pf("%d\n",cnt);
+		}
+	}
+	return 0;
+}

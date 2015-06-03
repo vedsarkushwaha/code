@@ -1,0 +1,6 @@
+4
+B X X X
+X B X X
+A X B X
+X A X A
+ABA

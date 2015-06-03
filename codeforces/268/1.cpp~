@@ -1,0 +1,21 @@
+T=int(raw_input())
+lst=[0]*T
+while(True):
+	lst=raw_input()
+	lst=lst.split(' ')
+	for i in lst:
+		lst[i-1]=1
+	lst=raw_input()
+	lst=lst.split(' ')
+	for i in lst:
+		lst[i-1]=1
+	#check
+	flag=0
+	for i in range(T):
+		if lst[i]==0:
+			flag=1
+			break
+	if flag==0:
+		print "I become the guy."
+	else:
+		print "Oh, my keyboard!"

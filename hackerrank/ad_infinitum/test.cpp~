@@ -1,0 +1,21 @@
+#include<cstdio>
+using namespace std;
+int main() {
+	unsigned long long N,i,sum,temp1,temp2,temp3;
+	int T;
+	//scanf("%d",&T);
+	while(1) {
+		sum=0;
+		scanf("%llu",&N);
+		temp1=N/2;
+		for(i=1;i<=temp1;i++) {
+			if(((N-i)%(2*i))<i) {
+				printf("%llu ",i);
+				sum++;
+			}
+		}
+		sum+=N-N/2;
+		printf("\nSum=%llu\n",sum);
+	}
+	return 0;
+}

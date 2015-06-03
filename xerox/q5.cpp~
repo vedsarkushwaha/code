@@ -1,0 +1,54 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0
+using namespace std;
+
+struct planet {
+	double x,y,z;
+	string name;
+};
+
+double euc_dist(planet p1,planet p2) {
+	return sqrt((p1.x-p2.x)*(p1.x-p2.x)+(p1.y-p2.y)*(p1.y-p2.y)+(p1.z-p2.z)*(p1.z-p2.z));
+}
+
+vector<planet> vec;
+int main() {
+	var(double);
+	ll N;
+	char tp[100];
+	planet p;
+	p.name="Earth";p.x=0;p.y=0;p.z=0;
+	vec.push_back(p);
+	sc("%lld",&N);
+	while(N--) {
+		sc("%s,%lf,%lf,%lf",tp,&(p.x),&(p.y),&(p.z));
+		p.name=tp;
+		vec.push_back(p);
+	}
+	//p.name="Earth";p.x=0;p.y=0;p.z=0;
+	//vec.push_back(p);
+	vec.push_back(vec.at(0));
+	tmp=0;
+	fr(i,0,vec.size()-1) {
+		tmp+=euc_dist(vec.at(i),vec.at(i+1));
+		cout<<vec[i].name<<",";
+	}
+	pf("%lf",tmp);
+	return 0;
+}

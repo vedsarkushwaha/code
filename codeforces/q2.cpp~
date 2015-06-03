@@ -1,0 +1,49 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#define f(i,m,n) for(i=m;i<n;i++)
+#define ull unsigned long long
+#define sc scanf
+#define pf printf
+#define var long long i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp,a,b,c
+using namespace std;
+
+long long digi(long long x) {
+	long long tmp=0;
+	while(x!=0) {
+		tmp+=(x%10);
+		x=x/10;
+	}
+	return tmp;
+}
+
+int main() {
+	var;
+	vector<long long> vec;
+	vector<long long>::iterator it;
+	sc("%lld%lld%lld",&a,&b,&c);
+	f(i,1,82) {
+		tmp=b*pow(i,a)+c;
+		if(digi(tmp)==i) {
+			k++;
+			if((tmp<1000000000)&&(tmp>0)) {		
+				//pf("%lld\n",tmp);
+				vec.push_back(tmp);
+			}
+		}
+	}
+	pf("%lld\n",k);
+	sort(vec.begin(),vec.end());
+	for(it=vec.begin();it!=vec.end();++it)
+		pf("%lld ",*it);	
+	return 0;
+}

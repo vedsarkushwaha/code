@@ -1,0 +1,16 @@
+from fractions import Fraction
+t=int(raw_input())
+for i in range(t):
+	m=float(raw_input())
+	"""if len(m)==1:
+		print '1'
+	else:
+		dec=len(m[1])
+		num=float(m[0]+'.'+m[1])
+		num=int(num*(10**dec))
+		#print num,10**dec
+		frac=Fraction(num,(10**dec))
+		#print frac
+		print frac.denominator
+	"""
+	print Fraction(m).limit_denominator(10000).denominator

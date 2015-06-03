@@ -1,0 +1,12 @@
+from fractions import Fraction
+from decimal import Decimal
+if __name__=="__main__":
+	T=int(raw_input())
+	for j in range(T):
+		sm=float(0)
+		N=int(raw_input())
+		#if N>10000:
+			#N=10000
+		for i in xrange(N):
+			sm+=(((-1)**i)/float(2*i+1))
+		print sm

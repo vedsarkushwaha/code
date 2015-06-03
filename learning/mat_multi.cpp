@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1=0,tmp2=0,tmp3=0,tmp=0,tmp4=0,tmp5=0,flag=0,T=0,N=0
+#define pb push_back
+#define vi vector<int>
+#define vii vector<pair<int,int> >
+#define vl vector<ll>
+#define vll vector<pair<ll,ll> >
+using namespace std;
+int dp[100][100];
+int calc(vii vec,int p,int q) {
+	var(int);
+	//pf("%d %d\n",p,q);
+	//fflush(stdout);
+	if(dp[p][q]==INT_MAX)
+		if(p==q)
+			dp[p][q]=0;
+		else
+			fr(i,p,q)
+				dp[p][q]=min(dp[p][q],calc(vec,p,i)+calc(vec,i+1,q)+vec[p].first*vec[i].second*vec[q].second);
+	return dp[p][q];
+}
+int main() {
+	var(int);
+	vii vec;
+	sc("%d",&N);
+	while(N--) {
+		sc("%d %d",&tmp1,&tmp2);
+		vec.pb(make_pair(tmp1,tmp2));
+	}
+	fr(i,0,100)
+		fr(j,0,100)
+			dp[i][j]=INT_MAX;
+	/*fr(i,0,vec.size())
+		pf("%d %d\n",vec[i].first,vec[i].second);*/
+	pf("%d\n",calc(vec,0,vec.size()-1));
+	fr(i,0,6) {
+		fr(j,0,6) {
+			dp[i][j]!=INT_MAX?pf("%d\t",dp[i][j]):pf("0\t");
+		}
+		pf("\n");
+	}
+	return 0;
+}

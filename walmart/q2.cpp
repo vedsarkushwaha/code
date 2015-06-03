@@ -1,0 +1,78 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0
+using namespace std;
+
+int main() {
+	var(int);
+	int M,N;
+	sc("%d %d",&M,&N);
+	int arr[M+2][N+2];
+	int dn[M+2][N+2];
+	int up[M+2][N+2];
+
+	fr(i,1,M+1) {
+		fr(j,1,N+1) {
+			arr[i][j]=INT_MAX-100;
+			dn[i][j]=INT_MAX-100;
+			up[i][j]=INT_MAX-100;
+		}
+	}
+	fr(i,1,M+1) {
+		fr(j,1,N+1) {
+			sc("%d",&arr[i][j]);
+		}
+	}
+	fr(i,1,M+1) {
+		dn[i][1]=arr[i][1];
+		up[i][1]=arr[i][1];
+	}
+	fr(j,2,N+1) {
+		fr(i,1,M+1) {
+			dn[i][j]=min(dn[i-1][j],dn[i][j-1])+arr[i][j];
+		}
+	}
+	fr(j,2,N+1) {
+		ifr(i,M,0) {
+			up[i][j]=min(dn[i+1][j],dn[i][j-1])+arr[i][j];
+		}
+	}
+	fr(i,1,M+1) {
+		fr(j,1,N+1) {
+			pf("%d ",min(dn[i][j],up[i][j]));
+		}
+		pf("\n");
+	}
+	pf("\n");
+	fr(i,1,M+1) {
+		fr(j,1,N+1) {
+			pf("%d ",dn[i][j]);
+		}
+		pf("\n");
+	}
+	pf("\n");
+	fr(i,1,M+1) {
+		fr(j,1,N+1) {
+			pf("%d ",up[i][j]);
+		}
+		pf("\n");
+	}
+	
+	return 0;
+}

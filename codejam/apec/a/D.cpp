@@ -1,0 +1,70 @@
+#include <iostream>
+#include <algorithm>
+#include<cstdio>
+#include<cstdlib>
+#include<memory>
+#include<cstring>
+using namespace std;
+
+long long counts[40];
+
+void add(int a, int b) {
+	if (a < b) {
+		int c = a; 
+		a = b;
+		b = c;
+	}
+	if (b == 0) return;
+	int length = 0;
+	while ((1 << (length + 1)) <= b) {
+		length++;
+	}
+	int size = 1 << length;
+	int tempa = a;
+	counts[length] += a / size;
+	add(a % size, size);
+	add(a / size * size, b % size);
+	add(a % size, b % size);
+}
+
+int query[500];
+
+int main() {
+	freopen("input.txt","r",stdin);
+	int T;
+	cin >> T;
+	for (int cas = 1; cas <= T; cas++) {
+		memset(counts, 0, sizeof(counts));
+		int n, m;
+		cin >> n >> m;
+		int num = 0;
+		for (int i = 0; i < n; i++) {
+			cin >> query[i];
+		}
+		sort(query, query + n);
+		for (int i = n - 1; i >= 0; i--) {
+			int next = query[i];
+			again:
+			if (counts[next] > 0) {
+				counts[next]--;
+				continue;
+			}
+			for (int j = next + 1; j < 32; j++) {
+				if (counts[j]) {
+					counts[j]--;
+					counts[next] += (1 << (j - next)) * (1 << (j - next));
+					break;
+				}
+			}
+			if (counts[next] > 0) {
+				counts[next]--;
+			}
+			else {
+				num++;
+				add(m, m);
+				goto again;
+			}
+		}
+		cout << "Case #" << cas << ": " << num << endl;
+	}
+}

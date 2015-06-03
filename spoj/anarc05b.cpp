@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1=0,tmp2=0,tmp3=0,tmp=0,tmp4=0,tmp5=0,flag=0,T=0,N=0
+#define pb push_back
+#define vi vector<int>
+#define vii vector<pair<int,int> >
+#define vl vector<ll>
+#define vll vector<pair<ll,ll> >
+using namespace std;
+
+int main() {
+	var(int);
+	vi vec1,vec2;
+	while(1) {
+		vec1.clear(),vec2.clear();
+		sc("%d",&N);
+		if(N==0)
+			break;
+		//sc("%d",&N);
+		while(N--) {
+			sc("%d",&tmp);
+			vec1.pb(tmp);
+		}
+		sc("%d",&N);
+		while(N--) {
+			sc("%d",&tmp);
+			vec2.pb(tmp);
+		}
+		i=0,j=0;
+		tmp1=0,tmp2=0,tmp3=0;
+		while(i<vec1.size() && j<vec2.size()) {
+			if(vec1[i]<vec2[j]) {
+				tmp1+=vec1[i];
+				i++;
+			}
+			else if(vec1[i]>vec2[j]) {
+				tmp2+=vec2[j];
+				j++;
+			}
+			else {
+				tmp3+=max(tmp1,tmp2)+vec1[i];
+				//pf("max=%d\n",tmp3);
+				tmp1=0,tmp2=0;
+				i++,j++;
+			}
+		}
+		if(i==vec1.size())
+			while(j<vec2.size()) {tmp2+=vec2[j];j++;}
+		if(j==vec2.size())
+			while(i<vec1.size()) {tmp1+=vec1[i];i++;}
+		//pf(" %d ",tmp3);
+		tmp3=max(tmp3+tmp1,tmp3+tmp2);
+		pf("%d\n",tmp3);
+	}
+	return 0;
+	
+}

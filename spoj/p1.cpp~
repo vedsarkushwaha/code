@@ -1,0 +1,18 @@
+#include<cstdio>
+#include<iostream>
+#include<cmath>
+using namespace std;
+unsigned long long get_sum(int n) {
+	unsigned long long sum;
+	
+	return sum;
+}
+int main() {
+	int t,n;
+	scanf("%d",&t);
+	while(t--) {
+		scanf("%d",&n);
+		printf("%Lu\n",get_sum(n));
+	}
+	return 0;
+}

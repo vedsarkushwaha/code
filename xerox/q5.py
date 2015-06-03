@@ -1,0 +1,75 @@
+def euc_dist(lst1,lst2):
+	if lst1[0]=="Wolf359" and lst2[0]=="Vulcan":
+		return ((((lst1[1]-lst2[1])**2)+((lst1[2]-lst2[2])**2)+((lst1[3]-lst2[3])**2))**(0.5))/2
+	else:
+		return ((((lst1[1]-lst2[1])**2)+((lst1[2]-lst2[2])**2)+((lst1[3]-lst2[3])**2))**(0.5))
+lst=[]
+cost=[]
+visited=[]
+def calc_cost():
+	l=len(lst)
+	#print cost
+	for i in xrange(l):
+		for j in xrange(i):
+			tmp=euc_dist(lst[i],lst[j])
+			#print (i,j,tmp)
+			cost[i][j]=tmp
+			cost[j][i]=tmp
+def minimum(ind):
+	l=len(lst)
+	#print cost
+	for i in range(l):
+		if visited[i]==0 and ind!=i:
+			mn=cost[ind][i]
+			t1=i
+	#print mn,t1
+	#print visited,l,ind
+	for i in range(l):
+		if mn>cost[ind][i] and visited[i]==0 and i!=ind:
+			mn=cost[ind][i]
+			t1=i
+	#print mn,t1
+	return mn,t1
+def opti_cost():
+	res=""
+	total_cost=float(0)
+	l=len(lst)
+	curr=0
+	for i in range(l-1):
+		visited[curr]=1
+		t1,t2=minimum(curr)
+		#print curr,t2,t1
+		total_cost+=t1
+		if len(res)==0:
+			res+=lst[curr][0]
+		else:
+			res+=","+lst[curr][0]
+		curr=t2
+	#print total_cost
+	res+=(","+lst[t2][0])
+	res+=(","+lst[0][0])
+	total_cost+=cost[t2][0]
+	return res,total_cost
+
+if __name__=="__main__":
+	N=int(raw_input())
+	#print N
+	#global cost
+	lst.append(['Earth',0,0,0])
+	
+	for i in xrange(N):
+		name,x,y,z=(raw_input()).split(",")
+		lst.append([name,float(x),float(y),float(z)])
+	l=len(lst)
+	cost=[[0 for i in range(l)] for j in range(l)]
+	visited=[0 for i in range(l)]
+	#lst.append(['Earth',0,0,0])
+	calc_cost()
+	for i in cost:
+		for j in i:
+			print j,
+		print ""
+	print lst
+	st,cost=opti_cost()
+	print st+","+str(cost)
+	#Earth, Aldebaran, Acamar, Mira, Bellatrix, Earth,1066.0766437137736

@@ -1,0 +1,41 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0,T
+using namespace std;
+
+int main() {
+	var(int);
+	sc("%d",&T);
+	tmp3=3;
+	if(T<4)
+		pf("%d",T);
+	else {
+		fr(i,4,T+1) {
+			tmp=sqrt(i)+1;
+			fr(j,1,tmp) {
+				if(i%j==0) {
+					//pf("i=%d j=%d\n",i,j);
+					tmp3++;
+				}
+			}
+		}
+	}
+	pf("%d",tmp3);		
+	return 0;
+}

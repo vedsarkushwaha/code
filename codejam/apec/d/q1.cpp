@@ -1,0 +1,86 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0
+using namespace std;
+int arr[1010][1010];
+int chk(int x,int y) {
+	var(int);
+	tmp3=1;
+	while(1) {
+		tmp=arr[x][y];
+		if(arr[x][y+1]==tmp+1) {
+			y=y+1;
+			tmp3++;
+		}
+		else if(arr[x+1][y]==tmp+1) {
+			x=x+1;
+			tmp3++;
+		}
+		else if(arr[x][y-1]==tmp+1) {
+			y=y-1;
+			tmp3++;
+		}
+		else if(arr[x-1][y]==tmp+1) {
+			x=x-1;
+			tmp3++;
+		}
+		else
+			return tmp3;
+	}
+}
+void init() {
+	var(int);
+	fr(i,0,1010)
+		fr(j,0,1010)
+			arr[i][j]=0;
+}
+int main() {
+	var(int);
+	int T,S;
+	sc("%d",&T);
+	fr(i,1,T+1) {
+		//pf("\n");
+		sc("%d",&S);
+		init();
+		fr(j,1,S+1) {
+			fr(k,1,S+1) {
+				sc("%d",&tmp);
+				arr[j][k]=tmp;
+			}
+		}
+		//chck move
+		tmp3=-1;
+		fr(j,1,S+1) {
+			fr(k,1,S+1) {
+				tmp2=chk(j,k);
+				//pf("%d %d\n",arr[j][k],tmp2);
+				if(tmp2>tmp3) {
+					tmp3=tmp2;
+					tmp1=arr[j][k];
+				}
+				else if(tmp2==tmp3) {
+					if(tmp1>arr[j][k])
+						tmp1=arr[j][k];
+				}
+			}
+		}
+		pf("Case #%d: %d %d\n",i,tmp1,tmp3);
+	}
+	return 0;
+}

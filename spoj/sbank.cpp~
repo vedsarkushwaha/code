@@ -1,0 +1,48 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0,T,N
+using namespace std;
+
+int main() {
+	map<string,int> mp;
+	map<string,int>::iterator it;
+	pair<map<string,int>::iterator,bool> pr;
+	var(int);
+	char ch;
+	string strtmp;
+	sc("%d",&T);
+	while(T--) {
+		sc("%d\n",&N);
+		//sc("%c",ch);
+		mp.clear();
+		while(N--) {
+			getline(cin,strtmp);
+			pr=mp.insert(make_pair(strtmp,1));
+			if(pr.second==false) {
+				((pr.first)->second)+=1;
+			}
+		}
+		for(it=mp.begin();it!=mp.end();++it) {
+			cout<<it->first<<' '<<it->second<<endl;
+		}
+		sc("%c",&ch);
+		pf("%c",ch);
+	}
+	return 0;
+}

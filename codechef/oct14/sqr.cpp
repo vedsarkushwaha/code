@@ -1,0 +1,70 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0
+using namespace std;
+struct node {
+	int x,y;
+};
+
+void calc(int x1,int y1,int x2,int y2,int *x3,int *y3,int *x4,int *y4) {
+	int xc=(x1+x2)/2;int yc=(y1+y2)/2;
+	int xd=(x1-x2)/2;int yd=(y1-y2)/2;
+	*x3=xc-yd;*y3=yc+xd;
+	*x4=xc+yd;*y4=yc-xd;
+}
+
+int main() {
+	set<pair<int,int> > st;
+	set<pair<int,int> >::iterator it,it1;
+	var(int);
+	int N,X,Y;
+	int x3,y3,x4,y4;
+	sc("%d",&N);
+	while(N--) {
+		sc("%d %d",&tmp1,&tmp2);
+		st.insert(pair<int,int>(tmp1*2,tmp2*2));
+	}
+	if(st.size()<3) {
+		pf("%lu",4-st.size());
+		return 0;
+	}
+	k=2;
+	for(it=st.begin();it!=st.end();++it) {
+		tmp=it->first;tmp1=it->second;
+		for(it1=st.begin();it1!=st.end();++it1) {
+			if(it==it1)
+				continue;
+			tmp2=it1->first;tmp3=it1->second;
+			calc(tmp,tmp1,tmp2,tmp3,&x3,&y3,&x4,&y4);
+			if(st.find(pair<int,int>(x3,y3))!=st.end())
+				i=1;
+			else
+				i=0;
+			if(st.find(pair<int,int>(x4,y4))!=st.end())
+				j=1;
+			else
+				j=0;
+			if(i==1 && j==1) {
+				pf("0");
+				return 0;
+			}
+			if(i==1 || j==1)
+				k=1;
+		}
+	}
+	pf("%d",k);
+}

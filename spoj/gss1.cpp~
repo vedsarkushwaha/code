@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1=0,tmp2=0,tmp3=0,tmp=0,tmp4=0,tmp5=0,flag=0,T=0,N=0
+#define pb push_back
+#define vi vector<int>
+#define vii vector<pair<int,int> >
+#define vl vector<ll>
+#define vll vector<pair<ll,ll> >
+using namespace std;
+struct node {
+	int pr,su,sm,bs;
+};
+
+vector<node> segtree;
+vi vec;
+void init_seg(int N) {
+	node tmp;
+	tmp.pr=INT_MIN;tmp.su=INT_MIN;tmp.bs=INT_MIN,tmp.sm=INT_MIN;
+	segtree.resize(4*N,tmp);
+}
+void build_seg(int nd, int l, int r) {
+	var(int);
+	node eq;
+	if(l==r)
+		segtree[nd].pr=segtree[nd].su=segtree[nd].bs=segtree[nd].sm=vec[l];
+	else {
+		tmp1=2*nd,tmp2=2*nd+1;
+		build_seg(tmp1,l,(l+r)/2);
+		build_seg(tmp2,(l+r)/2+1,r);
+		segtree[nd].su=max(segtree[tmp2].sm+segtree[tmp1].su,segtree[tmp2].su);
+		segtree[nd].pr=max(segtree[tmp1].sm+segtree[tmp2].pr,segtree[tmp1].pr);
+		segtree[nd].sm=segtree[tmp2].sm+segtree[tmp1].sm;
+		segtree[nd].bs=max(segtree[tmp1].su+segtree[tmp2].pr,max(segtree[tmp1].bs,segtree[tmp2].bs));
+	}
+}
+node query(int nd, int l,int r,int i,int j) {
+	node p1,p2;
+	if(i>r || j<l) {
+		p1.bs=p1.pr=p1.su=p1.sm=INT_MIN;
+		return p1;
+	}
+	if (l>=i && r<=j)
+		return segtree[nd];
+	p1=query(2*nd,l,(l+r)/2,i,j);
+	p2=query(2*nd+1,(l+r)/2+1,r,i,j);
+	if(p1.bs==INT_MIN)
+		return p2;
+	if(p2.bs==INT_MIN)
+		return p1;
+	p1.bs=max(p1.su+p2.pr,max(p1.bs,p2.bs)),p1.su=max(p2.su,p2.sm+p1.su),p1.pr=max(p1.pr,p1.sm+p2.pr),p1.sm=p1.sm+p2.sm;
+	return p1;
+}
+int main() {
+	var(int);
+	sc("%d",&T);
+	vec.pb(0);
+	while(T--) {
+		sc("%d",&tmp);
+		vec.pb(tmp);
+	}
+	//init_seg(vec.size());
+	build_seg(1,1,vec.size());
+	sc("%d",&N);
+	while(N--) {
+		sc("%d %d",&tmp1,&tmp2);
+		pf("%d\n",query(1,1,vec.size(),tmp1,tmp2).bs);
+	}
+	return 0;
+}

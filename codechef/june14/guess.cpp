@@ -1,0 +1,27 @@
+#include<cstdio>
+#include<iostream>
+#include<string>
+using namespace std;
+long long sim(long long num,long long dem) {
+	
+}
+int main() {
+	int T,N,M,temp1,temp2;
+	long long num,dim;
+	scanf("%d",&T);
+	while(T--) {
+		scanf("%d%d",&N,&M);
+		if(N%2==0)
+			temp1=N/2;
+		else
+			temp1=(N/2)+1;
+		if(M%2==0)
+			temp2=M/2;
+		else
+			temp2=(M/2)+1;
+		num=(long long)temp1*(M/2) + (N/2)*(long long)temp2);
+		dem=(long long)N*M;
+		printf("%lld\n",sim(N,M));
+	}
+	return 0;
+}

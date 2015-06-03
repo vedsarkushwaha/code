@@ -1,0 +1,8 @@
+/*Build opeartor addition and ultiplication using classes*/
+#define N 100
+#include<cstdio>
+#include<cmath>
+#include<string>
+using namespace std;
+class arr {
+	int A[N],B[N]

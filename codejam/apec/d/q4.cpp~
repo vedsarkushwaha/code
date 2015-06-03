@@ -1,0 +1,240 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0
+using namespace std;
+int mat[20][20];
+int chk_cut(int x,int y) {
+	var(int);
+	tmp2=mat[x][y];
+	tmp3=0;
+	tmp1=tmp3;
+	if(tmp2=='K') {
+		if(mat[x-1][y-1]!=0)
+			tmp3++;
+		if(mat[x-1][y]!=0)
+			tmp3++;
+		if(mat[x-1][y+1]!=0)
+			tmp3++;
+		if(mat[x][y-1]!=0)
+			tmp3++;
+		if(mat[x][y+1]!=0)
+			tmp3++;
+		if(mat[x+1][y-1]!=0)
+			tmp3++;
+		if(mat[x+1][y]!=0)
+			tmp3++;
+		if(mat[x+1][y+1]!=0)
+			tmp3++;
+		//pf("k");
+		//pf(" %d ",tmp3-tmp1);
+	}
+	else if(tmp2=='Q') {
+		//left up
+		i=x;j=y;
+		while(i>=0 && j>=0) {
+			i--;j--;
+			if(mat[i][j]!=0) {
+				tmp3++;
+				////break;
+			}
+		}
+		i=x;j=y;
+		while(i>=0 && j<20) {
+			i--;j++;
+			if(mat[i][j]!=0) {
+				tmp3++;
+				////break;
+			}
+		}
+		i=x;j=y;
+		while(i<20 && j<20) {
+			i++;j++;
+			if(mat[i][j]!=0) {
+				tmp3++;
+				////break;
+			}
+		}
+		i=x;j=y;		
+		while(i<20 && j>=0) {
+			i++;j--;
+			if(mat[i][j]!=0) {
+				tmp3++;
+				////break;
+			}
+		}
+		fr(i,y,20) {
+			if((mat[x][i]!=0)&&(i!=y)) {
+				tmp3++;
+				////break;
+			}
+		}
+		ifr(i,y,-1) {
+			if((mat[x][i]!=0)&&(i!=y)) {
+				tmp3++;
+				////break;
+			}
+		}
+		fr(i,x,20) {
+			if((mat[i][y]!=0)&&(i!=x)) {
+				tmp3++;
+				////break;
+			}
+		}
+		ifr(i,x,-1) {
+			if((mat[i][y]!=0)&&(i!=x)) {
+				tmp3++;
+				////break;
+			}
+		}
+		//pf("q");
+	}
+	else if(tmp2=='R') {
+		fr(i,y,20) {
+			if((mat[x][i]!=0)&&(i!=y)) {
+				tmp3++;
+				////break;
+			}
+		}
+		ifr(i,y,-1) {
+			if((mat[x][i]!=0)&&(i!=y)) {
+				tmp3++;
+				////break;
+			}
+		}
+		fr(i,x,20) {
+			if((mat[i][y]!=0)&&(i!=x)) {
+				tmp3++;
+				////break;
+			}
+		}
+		ifr(i,x,-1) {
+			if((mat[i][y]!=0)&&(i!=x)) {
+				tmp3++;
+				////break;
+			}
+		}
+		//pf("r");
+	}
+	else if(tmp2=='B') {
+		i=x;j=y;
+		while(i>=0 && j>=0) {
+			i--;j--;
+			if(mat[i][j]!=0) {
+				tmp3++;
+				//break;
+			}
+		}
+		i=x;j=y;
+		while(i>=0 && j<20) {
+			i--;j++;
+			if(mat[i][j]!=0) {
+				tmp3++;
+				//break;
+			}
+		}
+		i=x;j=y;
+		while(i<20 && j<20) {
+			i++;j++;
+			if(mat[i][j]!=0) {
+				tmp3++;
+				//break;
+			}
+		}
+		i=x;j=y;		
+		while(i<20 && j>=0) {
+			i++;j--;
+			if(mat[i][j]!=0) {
+				tmp3++;
+				//break;
+			}
+		}
+		//pf("b");
+	}
+	else if(tmp2=='N') {
+		if(mat[x-2][y-1]!=0)
+			tmp3++;
+		if(mat[x-1][y-2]!=0)
+			tmp3++;
+		if(mat[x+1][y-2]!=0)
+			tmp3++;
+		if(mat[x+2][y-1]!=0)
+			tmp3++;
+		if(mat[x+2][y+1]!=0)
+			tmp3++;
+		if(mat[x+1][y+2]!=0)
+			tmp3++;
+		if(mat[x-1][y+2]!=0)
+			tmp3++;
+		if(mat[x-2][y+1]!=0)
+			tmp3++;
+		//pf("n");
+	}
+	else if(tmp2=='P') {
+		if(mat[x-1][y+1]!=0)
+			tmp3++;
+		if(mat[x-1][y-1]!=0)
+			tmp3++;
+		//pf("p");
+	}
+	return tmp3;
+}
+void init() {
+	var(int);
+	fr(i,0,20)
+		fr(j,0,20)
+			mat[i][j]=0;
+}
+void print() {
+	var(int);
+	fr(i,0,20) {
+		fr(j,0,20)
+			pf("%d ",mat[i][j]);
+		pf("\n");
+	}
+}
+int main() {
+	var(int);
+	int T,N;
+	char str[10];
+	sc("%d",&T);
+	fr(i,1,T+1) {
+		init();
+		tmp3=0;
+		sc("%d",&N);
+		fr(j,1,N+1) {
+			sc("%s",str);
+			mat[5+(8-(str[0]-'A'))][5+(8-(str[1]-'1'))]=str[3];
+		}
+		//print();pf("\n");
+		fr(j,1,20) {
+			fr(k,1,20) {
+				//chk cut
+				if(mat[j][k]!=0) {
+					//get the peice
+					//tmp2=mat[j][k];
+					//cnt cut
+					//pf("%d %d %d",j,k,chk_cut(j,k));
+					tmp3+=chk_cut(j,k);
+				}
+			}
+		}
+		pf("Case #%d: %d\n",i,tmp3);
+	}
+	return 0;
+}

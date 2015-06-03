@@ -1,0 +1,34 @@
+from sklearn.linear_model import Ridge
+import numpy as np
+from datetime import datetime
+
+if __name__=="__main__":
+	n=int(raw_input())
+	lst=[]
+	train=[]
+	target=[]
+	miss_t=[]
+	flag=0
+	clf=Ridge(normalize=True,alpha=1)
+	while(1):
+		if n==0:
+			break
+		n=n-1
+		lne=raw_input()
+		d,v=lne.split("\t")
+		if flag==0:
+			flag=1
+			ts=datetime.strptime(d,'%m/%d/%Y %H:%M:%S')
+			
+		stm=(datetime.strptime(d,'%m/%d/%Y %H:%M:%S')-ts).total_seconds()
+		if v[0:4]=="Miss":
+		if len(train)==0:
+			print 30
+			continue
+			clf.fit(train,target)
+			miss_t=(clf.predict([1,stm]))[0]
+			print miss_t[1]
+			target.append([1,float(miss_t[1])])
+		else:
+			target.append([1,float(v)])
+		train.append([1,stm])

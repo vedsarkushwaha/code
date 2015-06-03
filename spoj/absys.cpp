@@ -1,0 +1,62 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0,T
+using namespace std;
+int chknum(string a) {
+	var(int);
+	fr(i,0,a.length()) {
+		if((a[i]<'0')||(a[i]>'9'))
+			return 0;
+	}
+	return 1;
+}
+int getnum(string a) {
+	var(int);
+	tmp3=0;
+	fr(i,0,a.length()) {
+		tmp3=(tmp3*10)+a[i]-'0';
+	}
+	return tmp3;
+}
+int main() {
+	string a,b,c,p,q;
+	var(int);
+	sc("%d",&T);
+	while(T--) {
+		cin>>a>>p>>b>>q>>c;
+		//cout<<a<<" "<<b<<" "<<c<<endl;
+		if(chknum(a)==0) {
+			tmp1=getnum(b);
+			tmp2=getnum(c);
+			tmp=tmp2-tmp1;
+		}
+		else if(chknum(b)==0) {
+			tmp=getnum(a);
+			tmp2=getnum(c);
+			tmp1=tmp2-tmp;
+		}
+		else {
+			tmp=getnum(a);
+			tmp1=getnum(b);
+			tmp2=tmp1+tmp;
+		}
+		pf("%d + %d = %d\n",tmp,tmp1,tmp2);
+	}
+	return 0;
+}

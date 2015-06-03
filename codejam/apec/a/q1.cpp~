@@ -1,0 +1,47 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0
+using namespace std;
+unsigned ll power(unsigned ll x,unsigned ll y) {
+	unsigned ll temp;
+	if(y==0)
+		return 1;
+	temp=power(x, y/2);
+	if (y%2 == 0)
+		return temp*temp;
+	else
+		return x*temp*temp;
+}
+char num[10][10]={"1111110","0110000","1101101","1111001","0110011","1011011","1011111","1110000","1111111","1111011"};
+
+int main() {
+	var(int);
+	int T,N,cor_bit;
+	char ch[10];
+	vector<char[10]> vec;
+	fr(i,1,T+1) {
+		sc("%d",&N);
+		cor_bit=0;
+		fr(i,1,N+1) {
+			sc("%s",ch);
+			vec.push_back(ch);
+			cor_bit= cor_bit | atoi(ch,2);
+		}
+		pf("%d\n",cor_bit);
+	}
+	return 0;
+}

@@ -1,0 +1,105 @@
+#include<bits/stdc++.h>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1=0,tmp2=0,tmp3=0,tmp=0,tmp4=0,tmp5=0,flag=0,T=0,N=0
+#define pb push_back
+#define vi vector<int>
+#define vii vector<pair<int,int> >
+#define vl vector<ll>
+#define vll vector<pair<ll,ll> >
+#define sz 100000
+using namespace std;
+vi vec[10000];
+int prm[sz+1];
+
+void seive_fun() {
+	int i,j,k,limit;
+	prm[0]=1;
+	prm[1]=1;
+	limit=sqrt(sz);
+	for(i=2;i<=limit;i++) {
+		if(prm[i]==0) {
+			k=sz/i;
+			for(j=2;j<=k;j++)
+				prm[i*j]=1;
+		}
+	}
+}
+
+void gen() {
+	var(int);
+	fr(i,1000,10000) {
+		fr(j,1,10) {
+			if(i/1000 == j)
+				continue;
+			if(prm[j*1000+i%1000]==0) {
+				vec[i].pb(j*1000+i%1000);
+				//pf("%d %d\n",prm[j*1000+i%1000],j*1000+i%1000);
+			}
+		}
+		fr(j,0,10) {
+			if((i/100)%10 == j)
+				continue;
+			if(prm[(i/1000)*1000+(i%100)+j*100]==0) {
+				vec[i].pb((i/1000)*1000+(i%100)+j*100);
+				//pf("%d %d\n",prm[(i/1000)*1000+(i%100)+j*100],(i/1000)*1000+(i%100)+j*100);
+			}
+		}
+		fr(j,0,10) {
+			if((i/10)%10 == j)
+				continue;
+			if(prm[(i/100)*100+(i%10)+j*10]==0) {
+				vec[i].pb((i/100)*100+(i%10)+j*10);
+				//pf("%d %d\n",prm[(i/100)*100+(i%10)+j*10],(i/100)*100+(i%10)+j*10);
+			}
+		}
+		fr(j,0,10) {
+			if(i%10 == j)
+				continue;
+			if(prm[(i/10)*10+j]==0) {
+				vec[i].pb((i/10)*10+j);
+				//pf("%d %d\n",prm[(i/10)*10+j],(i/10)*10+j);
+			}
+		}
+	}
+}
+int vis[10000];
+int bfs(int num1,int num2) {
+	queue<pair<int,int> > Q;
+	var(int);
+	Q.push(make_pair(num1,0));
+	while(Q.front().first!=num2) {
+		tmp=Q.front().first;
+		vis[tmp]=1;
+		tmp5=Q.front().second;
+		Q.pop();
+		//pf("%d ",tmp);
+		fr(i,0,vec[tmp].size()) {
+			if(vis[vec[tmp][i]]==0)
+				Q.push(make_pair(vec[tmp][i],tmp5+1);
+		}
+	}
+	return tmp5;
+}
+int main() {
+	
+	var(int);
+	seive_fun();
+	gen();
+	sc("%d",&T);
+	while(T--) {
+		fr(i,0,10000)
+			vis[i]=0;
+		sc("%d %d",&tmp,&tmp1);
+		/*fr(i,0,vec[tmp].size())
+			pf("%d ",vec[tmp][i]);
+		pf("\n");
+		fr(i,0,vec[tmp1].size())
+			pf("%d ",vec[tmp1][i]);*/
+		pf("%d\n",bfs(tmp,tmp1));
+	}
+	return 0;
+}

@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<string.h>
+char alpha[9][10]={"one","two","three","four","five","six","seven","eight","nine"};
+char extra[10][15]={"ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
+char mn[9][15]={"twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety","hundred"};
+int main() {
+	long sum=0;
+	int i,j,k;
+	//one two ...nine
+	for(i=0;i<9;i++) {
+		//printf("%s ",alpha[i]);
+		sum+=strlen(alpha[i]);
+	}
+	//ten eleven...ninteen
+	for(i=0;i<10;i++) {
+		sum+=strlen(extra[i]);
+		//printf("%s",extra[i]);
+	}
+	//21 to 99 minus 20 30 40 ....100
+	for(i=0;i<8;i++) {
+		for(j=0;j<9;j++) {
+			sum+=strlen(mn[i])+strlen(alpha[j]);
+			//printf("%s %s\n",mn[i],alpha[j]);
+		}
+	}
+	//twenty thirty...one hundred
+	for(i=0;i<9;i++) {
+		sum+=strlen(mn[i]);
+		//printf("%s\n",mn[i]);
+	}
+	sum+=3;
+	//completes till 100
+	//one hundred and one..one hundred and nine....nine hundred and nine
+	for(i=0;i<9;i++) {
+		for(j=0;j<9;j++) {
+			sum+=strlen(alpha[i])+strlen(mn[8])+3+strlen(alpha[j]);
+			//printf("%s %s %s\n",alpha[i],mn[8],alpha[j]);
+		}
+	}
+	//one hundred and ten..one hundred and ninteen....nine hundred and ninteen
+	for(i=0;i<9;i++) {
+		for(j=0;j<10;j++) {
+			sum+=strlen(alpha[i])+strlen(mn[8])+3+strlen(extra[j]);
+			//printf("%s %s %s\n",alpha[i],mn[8],extra[j]);
+		}
+	}
+	//one hundred and twenty one..one hundred and ninty nine....nine hundred and ninty nine
+	for(i=0;i<9;i++) {
+		for(j=0;j<8;j++) {
+			for(k=0;k<9;k++) {
+				sum+=strlen(alpha[i])+strlen(mn[8])+3+strlen(mn[j])+strlen(alpha[k]);
+				//printf("%s %s %s %s\n",alpha[i],mn[8],mn[j],alpha[k]);
+			}
+		}
+	}
+	//one hundred and twenty..one hundred and ninty....nine hundred and ninty
+	for(i=0;i<9;i++) {
+		for(j=0;j<8;j++) {
+			sum+=strlen(alpha[i])+strlen(mn[8])+3+strlen(mn[j]);
+			//printf("%s %s %s\n",alpha[i],mn[8],mn[j]);
+		}
+	}
+	//one hundred..two hundred....nine hundred
+	for(i=0;i<9;i++) {
+		sum+=strlen(alpha[i])+strlen(mn[8]);
+		//printf("%s %s\n",alpha[i],mn[8]);
+	}
+	sum+=strlen("onethousand");
+	printf("%ld",sum);
+	return 0;
+}

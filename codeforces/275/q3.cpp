@@ -1,0 +1,50 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ll unsigned long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0
+using namespace std;
+int main() {
+	ll N,K;
+	var(ll);
+	tmp1=0;
+	tmp=1;
+	cin>>N>>K;
+	tmp1=1;tmp2=N;
+	tmp3=0;
+	fr(i,1,K+1) {
+		pf("%llu ",tmp1);
+		tmp3=0;
+		tmp1++;
+		i++;
+		if(i==K+1)
+			break;
+		pf("%llu ",tmp2);
+		tmp3=1;
+		tmp2--;
+	}
+	if(tmp3==0) {
+		fr(j,tmp1,tmp2+1) {
+			pf("%llu ",j);
+		}
+	}
+	else {
+		for(j=tmp2;j>=tmp1;j--) {
+			pf("%llu ",j);
+		}
+	}
+	return 0;
+}

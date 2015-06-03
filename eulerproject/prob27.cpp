@@ -1,0 +1,8 @@
+#include<cstdio>
+using namespace std;
+int prime(int num)
+int main() {
+	int i,j,k,cnt;
+	for(i=-999;i<1000;i++) {
+		for(j=-999;j<1000;j++) {
+			//form the equation and check for prime

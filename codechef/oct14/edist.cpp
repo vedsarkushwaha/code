@@ -1,0 +1,52 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0
+using namespace std;
+int d[2001][2001];
+int main() {
+	string str1,str2;
+	var(int);int T,a,b,k;
+	sc("%d",&T);
+	while(T--) {
+		cin>>str1>>str2;
+		sc("%d %d %d",&a,&b,&k);
+		tmp1=min(str1.length(),2000);
+		tmp2=min(str2.length(),2000);
+		fr(i,0,tmp1+1)
+			d[0][i]=i;
+		fr(i,0,tmp2+1)
+			d[i][0]=i;
+		fr(i,1,tmp1+1) {
+			fr(j,1,tmp2+1) {
+				if(str1[i-1]==str2[j-1]) {
+					d[i][j]=d[i-1][j-1];
+				}
+				else {
+					d[i][j]=min(d[i-1][j],min(d[i][j-1],d[i-1][j-1]))+1;
+				}
+			}
+		}
+		pf("%d\n",d[str1.length()][str2.length()]);
+		/*fr(i,0,str1.length()+1) {
+			fr(j,0,str2.length()+1) {
+				pf("%d ",d[i][j]);
+			}
+			pf("\n");
+		}*/
+	}
+	return 0;
+}

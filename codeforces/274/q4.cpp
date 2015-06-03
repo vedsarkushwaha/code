@@ -1,0 +1,72 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0
+using namespace std;
+
+int main() {
+	var(int);
+	int N,L,X,Y;
+	set<int> st;
+	set<int>::iterator it;
+	sc("%d %d %d %d",&N,&L,&X,&Y);
+	while(N--) {
+		sc("%d",&tmp);
+		st.insert(tmp);
+	}
+	tmp2=0;tmp3=0;
+	//sort(vec.begin(),vec.end());
+	for(it=st.begin();it!=st.end();++it) {
+		if(st.find(*it+X)!=st.end()) {
+			tmp2=1;
+			break;
+		}
+	}
+	for(it=st.begin();it!=st.end();++it) {
+		if(st.find(*it+Y)!=st.end()) {
+			tmp3=1;
+			break;
+		}
+	}
+	tmp=0;
+	if((tmp3==1)&&(tmp2==1))
+		pf("0\n");
+	else if((tmp3==0)&&(tmp2==0)) {
+		tmp1=Y-X;
+		for(it=st.begin();it!=st.end();++it) {
+			if(st.find(*it+tmp1)!=st.end()) {
+				if((*(st.find(*it+tmp1)))+X<=L) {
+					pf("1\n");
+					pf("%d\n",(*(st.find(*it+tmp1))+X));
+				}
+				else if((*(st.find(*it+tmp1)))-X>=0) {
+					pf("1\n");
+					pf("%d\n",(*(st.find(*it+tmp1))-X));
+				}
+				tmp=1;
+				break;
+			}
+		}
+		if(tmp==0)
+			pf("2\n%d %d\n",X,Y);
+	}	
+	else if(tmp2==0)
+		pf("1\n%d\n",X);
+	else if(tmp3==0)
+		pf("1\n%d\n",Y);
+	return 0;
+}

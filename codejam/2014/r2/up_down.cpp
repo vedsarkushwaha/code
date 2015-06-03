@@ -1,0 +1,37 @@
+#include<cstdio>
+#include<list>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int get_min(vector<int> a) {
+	int len=a.size();
+	int i,j,min=1000000001;
+	for(i=0;i<len;i++) {
+		if(a[i]<min) {
+			min=a[i];
+			j=i;
+		}
+	}
+	return j;
+}
+int main() {
+	int T,N,i,j,itm,cnt,index;
+	vector<int> arr;
+	scanf("%d",&T);
+	for(i=0;i<T;i++) {
+		cnt=0;
+		arr.clear();
+		scanf("%d",&N);
+		for(j=0;j<N;j++) {
+			scanf("%d",&itm);
+			arr.push_back(itm);
+		}
+		for(j=0;j<N;j++) {
+			index=get_min(arr);
+			cnt+=min(index,N-j-1-index);
+			arr.erase(arr.begin()+index);
+		}
+		printf("Case #%d: %d\n",i+1,cnt);
+	}
+	return 0;
+}

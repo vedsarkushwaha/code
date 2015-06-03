@@ -1,0 +1,80 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0
+using namespace std;
+unsigned ll power(unsigned ll x,unsigned ll y) {
+	unsigned ll temp;
+	if(y==0)
+		return 1;
+	temp=power(x, y/2);
+	if (y%2 == 0)
+		return temp*temp;
+	else
+		return x*temp*temp;
+}
+unsigned ll gcd(unsigned ll a, unsigned ll b) {
+  while (b != 0)  {
+    int t = b;
+    b = a % b;
+    a = t;
+  }
+  return a;
+}
+int dp[10000][10000];
+void ans( char* str, int low, int high ) {
+	var(int);
+    fr(i,low,high+1)
+        printf("%c", str[i]);
+}
+
+void fun(char *str) {
+	var(int);
+    int n = strlen(str);
+    tmp3=1;
+    fr(i,0,n)
+        dp[i][i]=1;
+    int start = 0;
+    fr(i,0,n-1) {
+        if(str[i]==str[i+1]) {
+            dp[i][i+1]=1;
+            start=i;
+            tmp3=2;
+        }
+    }
+    fr(k,3,n+1) {
+        fr(i,0,n-k+1) {
+            j=i+k-1;
+            if(dp[i+1][j-1] && str[i]==str[j]) {
+                dp[i][j]=1;
+                if(k>tmp3) {
+                    start=i;
+                    tmp3=k;
+                }
+            }
+        }
+    }
+    ans(str,start,start+tmp3-1);
+}
+
+int main() {
+    char str[15001];
+    sc("%s",str);
+    fun(str);
+    return 0;
+}

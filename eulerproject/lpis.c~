@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define SF "in.txt"
+void main() {
+	char buf[1];
+	int temp,sum=1,arr[1100],i=0,j;
+	FILE *pr;
+	pr = fopen(SF,"rb");
+	//pw = fopen(DF,"wb");
+	do {
+		fread(buf,sizeof(char),1,pr);
+		//fwrite(buf,1,1,pw);
+		//printf("%c ",*buf);
+		arr[i]=atoi(buf);
+		//printf("%d ",arr[i]);
+		i++;
+		//printf("%d ",arr[0]);
+	}while(!feof(pr));
+	for(j=0;j<i;j++)
+		printf("%d ",arr[j]);
+	printf("\n");
+	//calculation starts
+	j=0;
+	//st:
+	sum*=arr[j];
+	j++;
+	sum*=arr[j];
+	j++;
+	sum*=arr[j];
+	j++;
+	sum*=arr[j];
+	j++;
+	sum*=arr[j];
+	/*if(j>=i) {
+		printf("%d",temp);
+		exit(0);
+	}*/
+	temp=sum;
+	j++;
+	while(j<i) {
+		if(arr[j-5]==0)
+			sum=arr[j-4]*arr[j-3]*arr[j-2]*arr[j-1];
+		else
+			sum=sum/arr[j-5];
+		sum*=arr[j];
+		if(sum>temp)
+			temp=sum;
+		j++;
+	}
+	printf("%d",temp);
+	fclose(pr);
+}

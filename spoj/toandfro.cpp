@@ -1,0 +1,79 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0
+using namespace std;
+unsigned ll power(unsigned ll x,unsigned ll y) {
+	unsigned ll temp;
+	if(y==0)
+		return 1;
+	temp=power(x, y/2);
+	if (y%2 == 0)
+		return temp*temp;
+	else
+		return x*temp*temp;
+}
+unsigned ll gcd(unsigned ll a, unsigned ll b) {
+  while (b != 0)  {
+    int t = b;
+    b = a % b;
+    a = t;
+  }
+  return a;
+}
+int main() {
+	var(int);
+	int T;
+	int mat[300][300];
+	string str;
+	while(1) {
+		fr(i,0,300)
+			fr(j,0,300)
+				mat[i][j]=0;
+		sc("%d",&T);
+		if(T==0)
+			break;
+		cin>>str;
+		tmp3=str.length();
+		i=0;
+		//pf("%d\n",tmp3);
+		//pf("\n");
+		while(i<(tmp3/T)) {
+			fr(j,0,T) {
+				mat[i][j]=str[i*T+j];
+				//pf("%c",str[i*T+j]);
+			}
+			i++;
+			if(i==(tmp3/T))
+				break;
+			ifr(j,T-1,-1) {
+				mat[i][T-1-j]=str[i*T+j];
+				//pf("%c",str[i*T+j]);
+			}
+			i++;
+		}
+		//pf("\n");
+		fr(j,0,T) {
+			fr(i,0,tmp3/T) {
+				pf("%c",mat[i][j]);
+			}
+		}
+		pf("\n");
+	}
+	return 0;
+}

@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1=0,tmp2=0,tmp3=0,tmp=0,tmp4=0,tmp5=0,flag=0,T=0,N=0,Q=0
+#define pb push_back
+#define vi vector<int>
+#define vii vector<pair<int,int> >
+#define vl vector<ll>
+#define vll vector<pair<ll,ll> >
+using namespace std;
+
+int main() {
+	map<pair<string,int>,string> st;
+	map<pair<string,int>,string>::iterator it;
+	var(int);
+	string str,str1,str2,str3;
+	sc("%d\n",&N);
+	fr(i,0,N) {
+		cin>>str;
+		//cout<<str<<endl;
+		if(i==0)
+			str3=str;
+		str1=str[0]+str[1];
+		str2=str[1]+str[2];
+		cout<<str1<<' '<<str2<<' '<<str<<endl;
+		st.insert(make_pair(make_pair(str1,1),str));
+		st.insert(make_pair(make_pair(str2,2),str));
+	}
+	//for(it=st.begin();it!=st.end();++it) {
+		//cout<<(it->first).first<<' '<<(it->first).second<<' '<<(it->second)<<endl;
+	//}
+	//cout<<str3<<endl;
+	while(!st.empty()) {
+		str1=str3[0]+str3[1];
+		it=st.find(make_pair(str1,2));
+		if(it==st.end())
+			break;
+		else {
+			str3=(it->first).first+str3;
+			//cout<<str3<<' '<<(it->first).first<<" ab "<<endl;
+			st.erase(it);
+		}
+	}
+	cout<<str3<<endl;
+	while(!st.empty()) {
+		str1=str3[str3.length()-2]+str3[str3.length()-1];
+		it=st.find(make_pair(str1,1));
+		if(it==st.end())
+			break;
+		else {
+			str3=str3+(it->first).first;
+			st.erase(it);
+		}
+	}
+	if(st.empty())
+		cout<<"YES"<<endl<<str3;
+	else
+		cout<<"NO"<<endl<<str3;
+	return 0;
+}

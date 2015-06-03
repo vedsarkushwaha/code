@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1=0,tmp2=0,tmp3=0,tmp=0,tmp4=0,tmp5=0,flag=0,T=0,N=0
+#define pb push_back
+using namespace std;
+pair<char,bool> grd[100][100];
+
+int fun(char ch,int p,int q) {
+  var(int);
+  fr(i,-1,2) {
+    fr(j,-1,2) {
+      if(grd[p+i][q+j].first==ch && grd[p+i][q+j].second!=true)
+        return fun(ch+1,p+i,q+j);
+    }
+  }
+  return ch-'A';
+}
+int main() {
+	var(int);
+	char ch;
+	int H,W;
+	while(1) {
+		sc("%d %d",&H,&W);
+		if(H==0 && W==0)
+			break;
+		fr(i,0,H+1)
+			fr(j,0,W+1)
+			  if(i==0 || j==0 || i==H || j==W) {
+			    grd[i][j].first='#';
+			    grd[i][j].second=false;
+		    }
+		    else {
+			    sc("%c",&ch);
+			    grd[i][j].first=ch;
+			    grd[i][j].second=false;
+		    }
+    ch='A';
+		//cnt
+		tmp5=0;
+		fr(i,1,H+1) {
+		  fr(j,1,W+1) {
+		    if(grd[i][j].first==ch) {
+		      grd[i][j].second=true; 
+    		  tmp5=max(tmp5,fun(ch+1,i,j,0));
+  		  }
+		  }
+	  }
+		pf("%d\n",tmp5);
+	}
+	return 0;
+}

@@ -1,0 +1,130 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<map>
+#include<set>
+#include<cstring>
+#include<cmath>
+#include<string>
+#include<cstdlib>
+#include<queue>
+#include<algorithm>
+#include<climits>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1,tmp2,tmp3,tmp=0,T,N,M
+#define pb push_back
+using namespace std;
+struct node {
+	int id,val;
+};
+
+int main() {
+	var(int);
+	char ch;
+	sc("%d",&T);
+	while(T--) {
+		//fflush(stdout);
+		pf("sc");
+		sc("%d %d\n",&M,&N);
+		pair<char,int> gr[N+2][M+2];
+		pf("%d %d\n",N,M);
+		tmp=0;
+		fr(i,0,N+2) {
+			fr(j,0,M+2) {
+				if(i==0 || i==N+1 || j==0 || j==M+1) {
+					gr[i][j].first='#';
+					gr[i][j].second=-1;
+				}
+				else {
+					sc("%c",&ch);
+					gr[i][j].first=ch;
+					gr[i][j].second=tmp;
+					if(ch=='.')
+						tmp++;
+					pf(" ent ");
+					//pf("%d %d\n",i,j);
+				}
+			}
+		}
+		pf("%d ",tmp);
+		if(tmp==0 || tmp==1) {
+			pf("0\n");
+			continue;
+		}
+		vector<int> vec[tmp];
+		queue<node> Q;
+		node src,dst,temp1,temp2;
+		int vis[tmp];
+		fr(i,0,tmp) {
+			vis[i]=0;
+		}
+		fr(i,1,N+1) {
+			fr(j,1,M+1) {
+				if(gr[i][j].first=='.') {
+					if(gr[i-1][j].first=='.')
+						vec[gr[i][j].second].pb(gr[i-1][j].second);
+					if(gr[i][j-1].first=='.')
+						vec[gr[i][j].second].pb(gr[i][j-1].second);
+					if(gr[i+1][j].first=='.')
+						vec[gr[i][j].second].pb(gr[i+1][j].second);
+					if(gr[i][j+1].first=='.')
+						vec[gr[i][j].second].pb(gr[i][j+1].second);
+				}
+			}
+		}
+		
+		src.id=0;src.val=0;
+		pf("done");
+		fflush(stdout);
+		temp1.id=vec[1][0];temp1.val=0;
+		Q.push(temp1);
+		while(!Q.empty()) {
+			temp1.id=(Q.front()).id;
+			temp1.val=(Q.front()).val;
+			Q.pop();
+			vis[temp1.id]=1;
+			fr(i,0,vec[temp1.id].size()) {
+				if(vis[vec[temp1.id][i]]!=1) {
+					temp2.id=vec[temp1.id][i];
+					temp2.val=temp1.val+1;
+					Q.push(temp2);
+					if(src.val<temp2.val) {
+						src.val=temp2.val;
+						src.id=temp2.id;
+					}
+				}
+			}
+		}
+		//pf("end");
+		//fflush(stdout);
+		fr(i,0,N+1)
+			vis[i]=0;
+		dst.id=0;dst.val=0;
+		src.val=0;
+		Q.push(src);
+		while(!Q.empty()) {
+			temp1.id=(Q.front()).id;
+			temp1.val=(Q.front()).val;
+			Q.pop();
+			vis[temp1.id]=1;
+			fr(i,0,vec[temp1.id].size()) {
+				if(vis[vec[temp1.id][i]]!=1) {
+					temp2.id=vec[temp1.id][i];
+					temp2.val=temp1.val+1;
+					Q.push(temp2);
+					if(dst.val<temp2.val) {
+						dst.val=temp2.val;
+						dst.id=temp2.id;
+					}
+				}
+			}
+		}
+		pf("%d\n",dst.val);
+	}
+	return 0;
+}
