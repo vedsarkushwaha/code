@@ -11,8 +11,32 @@
 #define vl vector<ll>
 #define vll vector<pair<ll,ll> >
 using namespace std;
-
+int arr[5001];
+int fun(int l,int r) {
+	var(int);
+	int cnt=0;
+	tmp=*min_element(arr+l,arr+r);
+	if(tmp!=0) {
+		fr(i,l,r) arr[i]-=tmp;
+		cnt+=tmp;
+	}
+	j=l;
+	fr(i,l,r) {
+		if(arr[i]==0) {
+			cnt+=fun(j,i);
+			j=i+1;
+		}
+	}
+	if(i!=j) cnt+=fun(j,i);
+	return min(cnt,r-l);
+}
 int main() {
-	
+	var(int);
+	sc("%d",&N);
+	fr(i,0,N) {
+		sc("%d",&tmp);
+		arr[i]=tmp;
+	}
+	pf("%d",fun(0,N));
 	return 0;
 }

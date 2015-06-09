@@ -13,6 +13,21 @@
 using namespace std;
 
 int main() {
-	
+	var(int);
+	double T1,T2,t1,t2;
+	sc("%d",&T);
+	while(T--) {
+		sc("%lf %lf %lf %lf",&T1,&T2,&t1,&t2);
+		if(t1==0 && t2==0) {
+			if(T1==0 && T2==0) pf("1\n");
+			else pf("0\n");
+		}
+		else if(t1==0) {
+			
+		}
+		else if(t2==0) {
+			
+		}
+	}
 	return 0;
 }

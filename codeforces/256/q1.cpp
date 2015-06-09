@@ -13,6 +13,27 @@
 using namespace std;
 
 int main() {
-	
+	var(int);
+	int a1,a2,a3,b1,b2,b3,n;
+	sc("%d %d %d",&a1,&a2,&a3);
+	sc("%d %d %d",&b1,&b2,&b3);
+	sc("%d",&n);
+	tmp1=a1+a2+a3;
+	tmp2=tmp1/5;
+	if(tmp1%5) tmp2++;
+	if(tmp2>n) {
+		pf("NO");
+		return 0;
+	}
+	n-=tmp2;
+	tmp4=b1+b2+b3;
+	tmp5=tmp4/10;
+	if(tmp4%10) tmp5++;
+	if(tmp5>n) {
+		pf("NO");
+		return 0;
+	}
+	else
+		pf("YES");
 	return 0;
 }

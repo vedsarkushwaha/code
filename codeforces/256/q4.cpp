@@ -13,6 +13,23 @@
 using namespace std;
 
 int main() {
-	
+	var(ll);
+	ll m,n;
+	sc("%lld %lld %lld",&n,&m,&k);
+	if(n<m) swap(n,m);
+	assert(k<=n*m);
+	ll low,mid,high;
+	low=1,high=m;
+	while(low<=high) {
+		mid=(low+high)/2;
+		if(k<=mid*n && k>(mid-1)*n) {
+			break;
+		}
+		else if(k>mid*n) low=mid+1;
+		else high=mid-1;
+	}
+	fr(i,1,n+1) {
+		
+	}
 	return 0;
 }
