@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define fr(i,m,n) for(i=m;i<n;i++)
 #define ifr(i,m,n) for(i=m;i>n;i--)
 #define ll long long
@@ -22,11 +22,23 @@ int main() {
 			if(T1==0 && T2==0) pf("1\n");
 			else pf("0\n");
 		}
-		else if(t1==0) {
-			
+		else if(t1==0 && t2!=0) {
+			if(T1>=T2) {
+				tmp=min(T1-T2,t2);
+				pf("%lf\n",double(tmp)/T1);
+			}
+			else {
+				pf("0\n");
+			}
 		}
-		else if(t2==0) {
-			
+		else if(t2==0 && t1!=0) {
+			if(T1>T2) {
+				pf("0\n");
+			}
+			else {
+				tmp=min(T2-T1,t1);
+				pf("%lf\n",double(tmp)/T1);
+			}
 		}
 	}
 	return 0;
