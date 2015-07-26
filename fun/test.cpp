@@ -14,13 +14,8 @@ using namespace std;
 
 int main() {
 	var(int);
-	pair<int,int> p1,p2;
-	p1.first=10,p1.second=20;
-	p2=p1;
-	pf("%d %d\n",p1.first,p1.second);
-	pf("%d %d\n",p2.first,p2.second);
-	p1.first=20;
-	pf("%d %d\n",p1.first,p1.second);
-	pf("%d %d\n",p2.first,p2.second);
+	int arr[10];
+	fr(i,0,10) sc("%d",&arr[i]);
+	fr(i,0,10) pf("%d ",arr[i]);
 	return 0;
 }

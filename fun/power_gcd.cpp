@@ -8,6 +8,7 @@ ll power(ll x,ll y) {
 	else
 		return x*temp*temp;
 }
+
 ll gcd(ll a, ll b) {
   while (b != 0)  {
     ll t = b;
