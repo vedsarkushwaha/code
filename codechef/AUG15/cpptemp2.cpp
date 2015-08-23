@@ -4,7 +4,7 @@
 #define ll long long
 #define sc scanf
 #define pf printf
-#define var(x) x i=0,j=0,k=0,tmp1=0,tmp2=0,tmp3=0,tmp=0,tmp4=0,tmp5=0,flag=0
+#define var(x) x i=0,j=0,k=0,tmp1=0,tmp2=0,tmp3=0,tmp=0,tmp4=0,tmp5=0,flag=0,T=0,N=0,Q=0
 #define pb push_back
 #define vi vector<int>
 #define vii vector<pair<int,int> >
