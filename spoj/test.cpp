@@ -1,21 +1,52 @@
-#include<bits/stdc++.h>
-#define fr(i,m,n) for(i=m;i<n;i++)
-#define ifr(i,m,n) for(i=m;i>n;i--)
-#define ll long long
-#define sc scanf
-#define pf printf
-#define var(x) x i=0,j=0,k=0,tmp1=0,tmp2=0,tmp3=0,tmp=0,tmp4=0,tmp5=0,flag=0,T=0,N=0
-#define pb push_back
-#define vi vector<int>
-#define vii vector<pair<int,int> >
-#define vl vector<ll>
-#define vll vector<pair<ll,ll> >
-using namespace  std;
-int arr[(1<<29) + 1];
-int main() {
-	var(int);
-	arr[1<<29]=12;
-	arr[1<<28]=25;
-	pf("%d %d\n",arr[1<<29],arr[1<<28]);
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+typedef long long int lld;
+
+lld dp[65][10];
+//dp[i][j] stores the solution for i number of digits where the last digit can be j
+
+void precompute(){
+
+	lld i, j, k;
+
+	for(i=0;i<10;i++){
+		dp[0][i] = 1;
+		//number of combinations for length 0 is 1
+		//base case
+	}
+	//uses the concept of memoization
+	for(i=1;i<=65;i++){
+		//i is the length of the number
+		for(j=0;j<10;j++){
+			//j is the max value of the last digit that is possible
+			for(k=0;k<=j;k++){
+				//k checks for all the lesser and equal values to the last digit 
+				//with one digit less
+				dp[i][j] += dp[i-1][k];
+			}
+		}
+	}
+	
+}
+
+int main(){
+
+	precompute();
+
+	int test_cases;
+	cin >> test_cases;
+
+	while(test_cases){
+
+		int index, number;
+		cin >> index >> number;
+		cout << index << " " << dp[number][9] << endl;
+
+		test_cases--;
+	}
+
 	return 0;
 }

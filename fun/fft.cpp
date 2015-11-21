@@ -12,6 +12,14 @@
 #define vll vector<pair<ll,ll> >
 using namespace std;
 
+void printVec(vector<complex<double> > &vec) {
+  var(int);
+  fr(i,0,vec.size()) {
+    pf("%lf %lf\n",vec[i].real(),vec[i].imag());
+  }
+  pf("\n");
+}
+
 vector<complex<double> > fft(const vector<complex<double> > &as) {
   int n = as.size();
   int k = 0;
@@ -81,6 +89,8 @@ vector<complex<double> > prodPoly(vector<complex<double> > &pol1,vector<complex<
   dft1=fft(pol1);
   dft2=fft(pol2);
 
+  printVec(dft1);
+  
   fr(i,0,dft1.size()) {
     ans.pb(dft1[i]*dft2[i]);
   }
