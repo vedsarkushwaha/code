@@ -1,4 +1,7 @@
-#include<bits/stdc++.h>
+#include <cstdio>
+#include <vector>
+#include <algorithm>
+#include <cassert>
 #define fr(i,m,n) for(i=m;i<n;i++)
 #define ifr(i,m,n) for(i=m;i>n;i--)
 #define ll long long
@@ -13,6 +16,23 @@
 using namespace std;
 
 int main() {
-	
+	var(int);
+	int n;
+	sc("%d",&n);
+	vi vec;
+	fr(i,0,n) {
+		sc("%d",&tmp);
+		vec.pb(tmp);
+		tmp5+=tmp;
+	}
+	sort(vec.begin(),vec.end());
+	tmp4=tmp5/n;
+	fr(i,0,n) {
+		if(vec[i]>=tmp4) break;
+		tmp3+=(tmp4-vec[i]);
+		vec[i]=tmp4;
+	}
+	if(n-i < (tmp5%n)) tmp3++;
+	pf("%d",tmp3);
 	return 0;
 }

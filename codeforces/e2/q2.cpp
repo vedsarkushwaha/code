@@ -13,6 +13,18 @@
 using namespace std;
 
 int main() {
-	
+	var(int);
+	int n,m;
+	sc("%d %d",&n,&m);
+	vi vecA,vecB;
+	fr(i,0,n) {
+		sc("%d",&tmp);
+		vecA.pb(tmp);
+	}
+	sort(vecA.begin(),vecA.end());
+	fr(i,0,m) {
+		sc("%d",&tmp);
+		pf("%d ",upper_bound(vecA.begin(),vecA.end(),tmp)-vecA.begin());
+	}
 	return 0;
 }

@@ -1,29 +1,54 @@
 #include<bits/stdc++.h>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1=0,tmp2=0,tmp3=0,tmp=0,tmp4=0,tmp5=0,flag=0
+#define pb push_back
+#define vi vector<int>
+#define vii vector<pair<int,int> >
+#define vl vector<ll>
+#define vll vector<pair<ll,ll> >
 using namespace std;
 
-int d[35][35][55],n,m,k;
+int dp[31][31][51];
 
-int f(int r,int c,int to) {
-	if(d[r][c][to]!=-1) return d[r][c][to];
-	else if(r*c==to||to==0) return d[r][c][to]=0;
-	else if(r*c<to) return d[r][c][to]=1e7;
-	d[r][c][to]=1e8;
-	for(int i=1;i<r;i++){
-	    for(int j=0;j<=to;j++) d[r][c][to]=min(d[r][c][to],f(i,c,j)+f(r-i,c,to-j)+c*c);
+int fun(int N,int M, int K) {
+	var(int);
+	if(K==0 || N*M==K) {
+		dp[N][M][K]=0;
+		return 0;
 	}
-	for(int i=1;i<c;i++){
-	    for(int j=0;j<=to;j++) d[r][c][to]=min(d[r][c][to],f(r,i,j)+f(r,c-i,to-j)+r*r);
+	
+	if(dp[N][M][K]!=-1) return dp[N][M][K];
+	pf("N=%d M=%d K=%d\n",N,M,K);
+
+	int cost=INT_MAX-10;
+	assert(N!=0 && M!=0);
+	fr(i,1,M) {
+		fr(j,0,K+1) {
+			cost=min(cost, fun(N,i,j) + N*N + fun(N,M-i,K-j));
+		}
 	}
-	return d[r][c][to];
+
+	fr(i,1,N) {
+		fr(j,0,K+1) {
+			cost=min(cost, fun(i,M,j) + M*M + fun(N-i,M,K-j));
+		}
+	}
+	dp[N][M][K]=cost;
+	return cost;
 }
 
 int main() {
-	memset(d,-1,sizeof(d));
-	int T;
-	cin>>T;
+	var(int);
+	int N,M,K,T;
+	sc("%d",&T);
+	fr(i,0,31) fr(j,0,31) fr(k,0,51) dp[i][j][k]=-1;
 	while(T--) {
-	    cin>>n>>m>>k;
-	    cout<<f(n,m,k)<<endl;
+		sc("%d %d %d",&N,&M,&K);
+		pf("%d\n",fun(N,M,K));
 	}
 	return 0;
 }

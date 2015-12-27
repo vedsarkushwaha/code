@@ -12,7 +12,48 @@
 #define vll vector<pair<ll,ll> >
 using namespace std;
 
+bool comp(pair<int,int> pr, int val) {
+	return (pr.first) < val;
+}
+
 int main() {
+	var(int);
+	int n,m;
+	vi b;
+	vii f;
+	int arr[100010]={0};
+		
+	sc("%d %d",&n,&m);
+
+	fr(i,0,n) {
+		sc("%d",&tmp);
+		f.pb(make_pair(tmp,i+1));
+		if(arr[tmp]==1) {
+			flag=1;
+		}
+		else {
+			assert(arr[tmp]==0);
+			arr[tmp]=1;
+		}
+	}
+	
+	fr(i,0,m) {
+		sc("%d",&tmp);
+		b.pb(tmp);
+		if(!arr[tmp]) {
+			pf("Impossible");
+			return 0;
+		}
+	}
+	if(flag) {
+		pf("Ambiguity");
+		return 0;
+	}
+	pf("Possible\n");
+	sort(f.begin(),f.end());
+	fr(i,0,b.size()) {
+		pf("%d ",lower_bound(f.begin(),f.end(),b[i],comp)->second);
+	}
 	
 	return 0;
 }
