@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define fr(i,m,n) for(i=m;i<n;i++)
 #define ifr(i,m,n) for(i=m;i>n;i--)
 #define ll long long
@@ -36,7 +36,7 @@ void build_tree(int node, int a, int b) {
  
 /**
  * Increment elements within range [i, j] with value value
-*/
+**/
 void update_tree(int node, int a, int b, int i, int j, int value) {
   
   	if(lazy[node] != 0) { // This node needs to be updated

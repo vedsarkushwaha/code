@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define fr(i,m,n) for(i=m;i<n;i++)
 #define ifr(i,m,n) for(i=m;i>n;i--)
 #define ll long long

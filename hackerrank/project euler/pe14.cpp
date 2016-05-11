@@ -1,8 +1,21 @@
-#include<stdio.h>
-long unsigned int arr[10000001];
-long unsigned int start_seq(int s) {
-	long unsigned seq,cnt=0;
-	seq=(long unsigned)s;
+#include<bits/stdc++.h>
+#define fr(i,m,n) for(i=m;i<n;i++)
+#define ifr(i,m,n) for(i=m;i>n;i--)
+#define ll long long
+#define sc scanf
+#define pf printf
+#define var(x) x i=0,j=0,k=0,tmp1=0,tmp2=0,tmp3=0,tmp=0,tmp4=0,tmp5=0,flag=0,T=0,N=0,Q=0
+#define pb push_back
+#define vi vector<int>
+#define vii vector<pair<int,int> >
+#define vl vector<ll>
+#define vll vector<pair<ll,ll> >
+using namespace std;
+
+ll arr[5000001];
+ll start_seq(ll s) {
+	ll seq,cnt=0;
+	seq=s;
 	while(1) {
 		if(arr[seq]!=0)
 			return cnt+arr[seq];
@@ -17,32 +30,31 @@ long unsigned int start_seq(int s) {
 }
 
 int main() {
-	long unsigned i,num,j,T,nm;
-	long unsigned cnt,max=0L;
+	ll i,num,j,T,nm;
+	ll cnt,max=0L;
 	arr[1]=1;
-	scanf("%lu",&T);
+	scanf("%lld",&T);
 	while(T--) {
-		scanf("%lu",&i);
+		scanf("%lld",&i);
 		max=0;
 		//printf("%d %d",i,j);
 		for(num=1;num<=i;num++) {
 			if(arr[num]==0) {
 				cnt=start_seq(num);
 				arr[num]=cnt;
-				j=num;
 				//printf("%lld %d\n",cnt,num);
 			}
 			else {
 				cnt=arr[num];
-				j=num;
 			}
+            j=num;
 			if(max<=cnt) {
 				//printf("max=%lld ",max);
 				max=cnt;
 				nm=j;
 			}
 		}
-		printf("%lu\n",nm);
+		printf("%lld\n",nm);
 	}
 	return 0;
 }

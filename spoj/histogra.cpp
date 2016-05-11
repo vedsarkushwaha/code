@@ -1,4 +1,5 @@
-#include<bits/stdc++.h>
+#include <cstdio>
+#include <algorithm>
 #define fr(i,m,n) for(i=m;i<n;i++)
 #define ifr(i,m,n) for(i=m;i>n;i--)
 #define ll long long
@@ -14,31 +15,6 @@ using namespace std;
 
 int main() {
 	var(ll);
-	ll arr[100010];
-	while(1) {
-		sc("%lld",&tmp);
-		tmp5=0;
-		if(tmp==0)
-			break;
-		else {
-			j=0;
-			fr(i,0,tmp) {
-				sc("%lld",&arr[i]);
-				if(i==0)
-					tmp5=arr[i];
-				else {
-					if(arr[j]<arr[i])
-						j++;
-					else {
-						while(j>=0 && arr[j]>=arr[i]) {
-							j--;
-						}
-						tmp5=max(tmp5,(j-i+1)*arr[i]);
-					}
-				}
-			}
-		}
-		pf("%lld\n",tmp5);
-	}
+	
 	return 0;
 }

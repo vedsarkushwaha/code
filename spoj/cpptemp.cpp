@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <cstdio>
 #define fr(i,m,n) for(i=m;i<n;i++)
 #define ifr(i,m,n) for(i=m;i>n;i--)
 #define ll long long
@@ -13,6 +13,11 @@
 using namespace std;
 
 int main() {
-	
+	var(int);
+	sc("%d",&T);
+	while(T--) {
+		sc("%d",&tmp);
+		pf("%d\n",tmp-tmp/2);
+	}
 	return 0;
 }
