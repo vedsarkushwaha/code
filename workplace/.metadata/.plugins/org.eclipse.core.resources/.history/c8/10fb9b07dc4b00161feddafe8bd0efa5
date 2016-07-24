@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<bean name="fileReader" class="chapter1_Interface.FileReader">
+	<constructor-arg value="Spring1/src/res/data"/>
+</bean>

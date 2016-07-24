@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean name="readerService" class="chapter1_spring.ReaderService">
+		<constructor-arg index="0" ref="fileReader" />
+	</bean>
+	
+	<bean name="fileReader" class="chapter1_spring.FileReader">
+		<constructor-arg index="0" value="src/data" />
+	</bean>
+	
+
+	
+	<bean name="initDestroyTestCons" class="chapter2_springInitDestroy.InitDestroyTest" scope="prototype">
+		<constructor-arg index="0" value="Setting A from constructor" />
+		<constructor-arg index="0" value="Setting B from constructor" />
+	</bean>
+	
+	<bean name="initDestroyTestSetterGetter" class="chapter2_springInitDestroy.InitDestroyTest" scope="prototype">
+		<property name="a" value="Setting A from SetterGetter" />
+		<property name="b" value="Setting B from SetterGetter" />
+	</bean>
+	
+	<bean name="initDestroyTestInit" class="chapter2_springInitDestroy.InitDestroyTest" init-method="init_method" scope="prototype"/>
+	<bean name="initDestroyTestDestroy" class="chapter2_springInitDestroy.InitDestroyTest" destroy-method="destroy_method" scope="prototype"/>
+
+</beans>

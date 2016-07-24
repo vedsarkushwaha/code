@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="chapter1_Interface.FileReader"/>
+<fullyQualifiedTypeName name="chapter1_Interface.DataReaderClient"/>
+<fullyQualifiedTypeName name="chapter1_spring.ReaderService"/>
+<fullyQualifiedTypeName name="chapter2_springInitDestroy.BeanClient"/>
+<fullyQualifiedTypeName name="org.springframework.util.Assert"/>
+<fullyQualifiedTypeName name="chapter2_springInitDestroy.InitDestroyTest"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,3 @@
+<bean name="fileReader" class="chapter1_Interface.FileReader"
+	<constructor-arg value="/home/vedsar/Desktop/git/code/workplace/Spring1/src/res/data"/>
+</bean>

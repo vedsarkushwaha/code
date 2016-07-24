@@ -1,0 +1,34 @@
+/**
+ * 
+ */
+package springproject;
+
+import chapter1_spring.ApplicationContext;
+import chapter1_spring.ClasspathXmlApplicationContext;
+import chapter1_spring.Reader;
+
+/**
+ * @author vedsar
+ *
+ */
+public class DataReaderClient {
+
+	private ApplicationContext ctx = null;
+	private Reader reader = null;
+	public DataReaderClient() {
+		ctx = new ClasspathXmlApplicationContext("reader-beans.xml");
+	}
+	
+	public String getData() {
+		reader = (Reader) ctx.getBean("fileReader");
+		reader.fetchData();
+	}
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

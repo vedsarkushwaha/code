@@ -29,58 +29,38 @@ void printVec(vi vec) {
 int main() {
 	var(int);
 	int T,M,N,s;
-	vi power;
 	sc("%d",&T);
-	// pf("1");
-	// fflush(stdout);
 	while(T--) {
-		power.clear();
-		power.pb(-1);
 		sc("%d %d %d",&N,&M,&s);
-		fr(i,0,M) {
+		int seqPow[M+1];
+		fr(i,1,M+1) {
 			sc("%d",&tmp);
-			power.pb(tmp);
+			seqPow[i]=tmp;
 		}
-		// pf("input done\n");
-		// fflush(stdout);
-		vi jump[1001];
-		vi::iterator it;
-		jump[s].pb(0);
-		// pf("GoingIntoLoop\n");
-		// fflush(stdout);
-		fr(j,1,M+1) {
-			// j is sequence
-			// pf("GoingIntoInnerLoop\n");
-			// fflush(stdout);
-			fr(i,1,N+1) {
-				// pf("%d: ",i);
-				// printVec(jump[i]);
-				// fflush(stdout);
-				it=lower_bound(jump[i].begin(),jump[i].end(),j-1);
-				if(it!=jump[i].end() && *it==j-1) {
-					// pass further
-					flag=0;
-					if(i+power[j]<=N) {
-						jump[i+power[j]].pb(j);
-						flag=1;
+		ll arr[M+1][N+1];
+		fr(i,0,M+1) {
+			fr(j,0,N+1) {
+				arr[i][j]=0;
+			}
+		}
+		arr[0][s]=1;
+		fr(i,1,M+1) {
+			int jump=seqPow[i];
+			fr(j,1,N+1) {
+				if(arr[i-1][j]!=0) {
+					if(j-jump>0) {
+						arr[i][j-jump]+=arr[i-1][j];
+						arr[i][j-jump]=arr[i][j-jump]%md;
 					}
-					if(i-power[j]>=1) {
-						jump[i-power[j]].pb(j);
-						flag=1;
+					if(j+jump<=N) {
+						arr[i][j+jump]+=arr[i-1][j];
+						arr[i][j+jump]=arr[i][j+jump]%md;
 					}
-					if(flag==0) jump[i].pb(M);
+					arr[i-1][j]=0;
 				}
 			}
 		}
-		// cnt balls for each monkey
-		int monkeyBalls[N+1];
-		fr(i,0,N+1) monkeyBalls[i]=0;
-		fr(i,1,N+1) {
-			int cnt=0;
-			fr(j,0,jump[i].size()) if(jump[i][j]==M) cnt++;
-			monkeyBalls[i]=cnt;
-		}
-		fr(i,1,N+1) pf("%d ",monkeyBalls[i]);
+		fr(i,1,N+1) pf("%lld ",arr[M][i]);
 		pf("\n");
 	}
 	return 0;

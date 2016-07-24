@@ -1,0 +1,29 @@
+/**
+ * 
+ */
+package chapter2_springInitDestroy;
+
+/**
+ * @author vedsar
+ *
+ */
+public class InitDestroyTest {
+	
+	String a;
+	String b;
+	
+	public InitDestroyTest(String a, String b) {
+		this.a = a;
+		this.b = b;
+	}
+	
+	public void init_method(String a, String b) {
+		this.a = a;
+		this.b = b;
+	}
+	
+	public void destroy_method(String a, String b) {
+		this.a = a;
+		this.b = b;
+	}
+}

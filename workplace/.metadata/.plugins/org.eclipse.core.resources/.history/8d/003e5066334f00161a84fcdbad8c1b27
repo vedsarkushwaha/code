@@ -1,0 +1,60 @@
+/**
+ * 
+ */
+package chapter2_springInitDestroy;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+/**
+ * @author vedsar
+ *
+ */
+public class BeanClient {
+	
+	private ApplicationContext ctx = null;
+	
+	private InitDestroyTest constructorTest = null;
+	private InitDestroyTest setterGetterTest = null;
+	private InitDestroyTest initTest = null;
+	private InitDestroyTest destroyTest = null;
+	
+	public BeanClient() {
+		ctx = new ClassPathXmlApplicationContext("reader-beans.xml");
+	}
+	
+	private void testBeanConstructor() {
+		constructorTest = (InitDestroyTest) ctx.getBean("initDestroyTestCons");
+	}
+	
+	private void testBeanSetterGetter() {
+		setterGetterTest = (InitDestroyTest) ctx.getBean("initDestroyTestSetterGetter");
+	}
+	
+	private void testBeanInit() {
+		initTest = (InitDestroyTest) ctx.getBean("initDestroyTestInit");
+	}
+	
+	private void testBeanDestroy() {
+		destroyTest = (InitDestroyTest) ctx.getBean("initDestroyTestDestroy");
+	}
+	
+	public static void main(String args[]) {
+		BeanClient client = new BeanClient();
+		client.testBeanConstructor();
+		System.out.println("A: "+client.constructorTest.a);
+		System.out.println("A: "+client.constructorTest.a);
+		
+		client.testBeanSetterGetter();;
+		System.out.println("A: "+client.setterGetterTest.a);
+		System.out.println("A: "+client.setterGetterTest.a);
+		
+		client.testBeanInit();
+		System.out.println("A: "+client.initTest.a);
+		System.out.println("A: "+client.initTest.a);
+		
+		client.testBeanDestroy();
+		System.out.println("A: "+client.destroyTest.a);
+		System.out.println("A: "+client.destroyTest.a);
+	}
+}

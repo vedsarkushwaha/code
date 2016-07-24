@@ -1,0 +1,84 @@
+/**
+ * 
+ */
+package chapter2_springInitDestroy;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.util.Assert;
+
+/**
+ * @author vedsar
+ *
+ */
+public class BeanClient {
+	
+	private ApplicationContext ctx = null;
+	
+	private InitDestroyTest constructorTest = null;
+	private InitDestroyTest setterGetterTest = null;
+	private InitDestroyTest initTest = null;
+	private InitDestroyTest destroyTest = null;
+	
+	public BeanClient() {
+		ctx = new ClassPathXmlApplicationContext("reader-beans.xml");
+	}
+	
+	private void testBeanConstructor() {
+		constructorTest = (InitDestroyTest) ctx.getBean("initDestroyTestCons");
+	}
+	
+	private void testBeanSetterGetter() {
+		setterGetterTest = (InitDestroyTest) ctx.getBean("initDestroyTestSetterGetter");
+	}
+	
+	private void testBeanInit() {
+		initTest = (InitDestroyTest) ctx.getBean("initDestroyTestInit");
+	}
+	
+	private void testBeanDestroy() {
+		destroyTest = (InitDestroyTest) ctx.getBean("initDestroyTestDestroy");
+	}
+	
+	private void printAll(InitDestroyTest ct, InitDestroyTest sgt, InitDestroyTest st, InitDestroyTest dt) {
+		System.out.println(ct.cons);
+		System.out.println(ct.settergetter);
+		System.out.println(ct.initi);
+		System.out.println(ct.dest);
+		System.out.println("=======================================");
+//		System.out.println(sgt.cons);
+//		System.out.println(sgt.settergetter);
+//		System.out.println(sgt.initi);
+//		System.out.println(sgt.dest);
+//		System.out.println("=======================================");
+//		System.out.println(st.cons);
+//		System.out.println(st.settergetter);
+//		System.out.println(st.initi);
+//		System.out.println(st.dest);
+//		System.out.println("=======================================");
+//		System.out.println(dt.cons);
+//		System.out.println(dt.settergetter);
+//		System.out.println(dt.initi);
+//		System.out.println(dt.dest);
+//		System.out.println("=======================================");
+	}
+	
+	public static void main(String args[]) {
+		BeanClient client = new BeanClient();
+		client.testBeanConstructor();
+//		client.printAll(client.constructorTest, client.setterGetterTest, client.initTest, client.destroyTest);
+		
+//		client.testBeanSetterGetter();
+//		client.printAll(client.constructorTest, client.setterGetterTest, client.initTest, client.destroyTest);
+		
+//		client.testBeanInit();
+//		client.printAll(client.constructorTest, client.setterGetterTest, client.initTest, client.destroyTest);
+		
+//		client.testBeanDestroy();
+		client.printAll(client.constructorTest, client.setterGetterTest, client.initTest, client.destroyTest);
+		client.constructorTest.settergetter="setting";
+		client.testBeanConstructor();
+		client.printAll(client.constructorTest, client.setterGetterTest, client.initTest, client.destroyTest);
+	}
+	
+}

@@ -1,0 +1,48 @@
+/**
+ * 
+ */
+package chapter2_springInitDestroy;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import chapter1_spring.ReaderService;
+
+/**
+ * @author vedsar
+ *
+ */
+public class BeanClient {
+	
+	private ApplicationContext ctx = null;
+	
+	private InitDestroyTest constructorTest = null;
+	private InitDestroyTest setterGetterTest = null;
+	private InitDestroyTest initTest = null;
+	private InitDestroyTest destroyTest = null;
+	
+	public BeanClient() {
+		ctx = new ClassPathXmlApplicationContext("reader-beans.xml");
+	}
+	
+	private void testBeanConstructor() {
+		constructorTest = (InitDestroyTest) ctx.getBean("initDestroyTestCons");
+	}
+	
+	private void testBeanSetterGetter() {
+		setterGetterTest = (InitDestroyTest) ctx.getBean("initDestroyTestSetterGetter");
+	}
+	
+	private void testBeanInit() {
+		initTest (InitDestroyTest) ctx.getBean("initDestroyTestInit");
+	}
+	
+	private InitDestroyTest testBeanDestroy() {
+		return (InitDestroyTest) ctx.getBean("initDestroyTestDestroy");
+	}
+	
+	public static void main(String args[]) {
+		BeanClient client = new BeanClient();
+		client.constructorTest = tes
+	}
+}

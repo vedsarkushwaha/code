@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean name="readerService" class="chapter1_spring.ReaderService" init-method="init">
+		<constructor-arg ref="fileReader" />
+	</bean>
+	
+	<bean name="fileReader" class="chapter1_spring.FileReader">
+		<constructor-arg value="src/data" />
+	</bean>
+	
+	//beans for springInitDestroy Packages
+	
+	<bean name="initDestroyTest" class="chapter2_springInitDestroy">
+		
+	</bean>
+</beans>

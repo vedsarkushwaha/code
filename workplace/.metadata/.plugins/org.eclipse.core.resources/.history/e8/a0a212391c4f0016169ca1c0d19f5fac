@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+package chapter2_springInitDestroy;
+
+/**
+ * @author vedsar
+ *
+ */
+public class InitDestroyTest {
+	
+	String a;
+	String b;
+	public InitDestroyTest(String a, String b) {
+		
+	}
+}

@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package chapter2_springInitDestroy;
+
+/**
+ * @author vedsar
+ *
+ */
+public class InitDestroyTest {
+
+}

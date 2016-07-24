@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;springproject.DataClient.java&apos; to &apos;DataReaderClient.java&apos;&#x0A;- Original project: &apos;chapter1withspringproject&apos;&#x0A;- Original element: &apos;springproject.DataClient.java&apos;&#x0A;- Renamed element: &apos;springproject.DataReaderClient.java&apos;" description="Rename compilation unit &apos;DataClient.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;springproject{DataClient.java" name="DataReaderClient.java" references="false" stamp="1468392136424" version="1.0"/>
+</session>
