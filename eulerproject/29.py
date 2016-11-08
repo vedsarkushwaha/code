@@ -1,20 +1,11 @@
 if __name__=="__main__":
-    # a,b=map(int,raw_input().split(' '))
-    aS=2
-    aE=10
-    bS=10
-    bE=20
-    sqrMap={}
-    for i in xrange(aS,aE+1):
-        sqrMap[i**2]=1
-    cnt=0
-    for i in xrange(aS,aE+1):
-        print i,
-        if i in sqrMap:
-            if bE/2>=bS:
-                cnt+=((bE-bS + 1)-(bE/2 - bS + 1))
-                print ((bE-bS + 1)-(bE/2 - bS + 1))
-        else:
-            cnt+=(bE-bS + 1)
-            print (bE-bS+1)
-    print cnt
+    N = 100000
+    unique = {}
+    for i in xrange(2,N+1):
+        for j in xrange(2,N+1):
+            tmp = i**j;
+            if tmp not in unique:
+                unique[tmp]=1;
+            else:
+                unique[tmp]+=1;
+    print len(unique)
