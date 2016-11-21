@@ -1,10 +1,7 @@
 #include <cstdio>
-#include <algorithm>
 #include <climits>
-
+#define limit 7
 #define ll long long
-#define limit 82
-
 using namespace std;
 
 void print(ll arr[limit][limit]) {
@@ -38,32 +35,6 @@ int main() {
       }
     }
   }
-
-  for(i=1;i<=limit-2;i++) {
-    for(j=1;j<=limit-2;j++) {
-      if(j==1) rd[i][j]=arr[i][j];
-      else rd[i][j]=arr[i][j]+min(rd[i-1][j], rd[i][j-1]);
-    }
-  }
-
-  for(i=limit-2;i>=1;i--) {
-    for(j=1;j<=limit-2;j++) {
-      if(j==1) ru[i][j] = arr[i][j];
-      else ru[i][j]=min(rd[i][j], arr[i][j]+min(ru[i+1][j], ru[i][j-1]));
-    }
-  }
-
-  // for(i=1;i<=limit-2;i++) {
-  //   for(j=1;j<=limit-2;j++) {
-  //     arr[i][j]=min(ru[i][j], rd[i][j]);
-  //   }
-  // }
-
-  // print(arr);
-  tmp=ru[limit-2][limit-2];
-  for(i=0;i<limit-2;i++) {
-    tmp = min(tmp, ru[i][limit-2]);
-  }
-  printf("%lld\n",tmp);
+  print(arr);
   return 0;
 }
