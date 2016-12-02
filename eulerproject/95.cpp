@@ -35,11 +35,12 @@ void init() {
 }
 
 int main() {
-  int i,tmp;
+  int i,tmp,j,k;
   map<int,int>::iterator it;
   init();
   vector<int> vec;
   for(i=1;i<=L;i++) {
+    // printf("%d\n",i);
     tmp=i;
     int cycleSize=0;
     int minNumer=INT_MAX;
@@ -48,7 +49,12 @@ int main() {
     vec.clear();
     // start sequence with tmp
     while(1) {
-      if(arr[tmp].first!=-1) {
+      if(tmp>L) {
+        cycleSize=0;
+        minNumer=INT_MAX;
+        break;
+      }
+      else if(arr[tmp].first!=-1) {
         cycleSize=arr[tmp].first;
         minNumer=arr[tmp].second;
         break;
@@ -57,22 +63,23 @@ int main() {
         it = mp.find(tmp);
         if(it!=mp.end()) {
           cycleSize = mp.size() - (it)->second + 1;
-          for(i=(it)->second;i<vec.size();i++) {
-            minNumer=min(minNumer, vec[i]);
+          for(j=((it)->second)-1;j<vec.size();j++) {
+            minNumer=min(minNumer, vec[j]);
           }
           break;
         }
         else {
           mp.insert(make_pair(tmp,cnt));
+          vec.push_back(tmp);
           tmp = getDivSum(tmp);
           cnt++;
         }
       }
     }
     // insert set value to array
-    for(i=0;i<vec.size();i++) {
-      arr[vec[i]].first=cycleSize;
-      arr[vec[i]].second=minNumer;
+    for(j=0;j<vec.size();j++) {
+      arr[vec[j]].first=cycleSize;
+      arr[vec[j]].second=minNumer;
     }
   }
 
@@ -86,6 +93,7 @@ int main() {
     else if(arr[i].first==maxCycleLength) {
       ans=min(ans, arr[i].second);
     }
+    printf("%d %d %d\n",i,arr[i].first, arr[i].second);
   }
 
   printf("%d\n",ans);
