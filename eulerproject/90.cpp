@@ -28,7 +28,7 @@ vector<int>::iterator findVec(vector<int>::iterator first, vector<int>::iterator
       first++;
     }
     return last;
-  // }
+  }
 }
 
 bool chk() {
@@ -75,6 +75,7 @@ int main() {
   int ans=0;
 
   set<pair<vector<int>, vector<int> > > ansSet;
+  set<pair<vector<int>, vector<int> > >::iterator it;
 
   sqr.push_back("01");
   sqr.push_back("04");
@@ -122,18 +123,12 @@ int main() {
     while(tmp) {
       if(tmp&1) {
         leftDice.push_back(arr[cnt]);
-        // if(arr[cnt]==6) {
-        //   leftDice.push_back(9);
-        // }
-        // if(arr[cnt]==9) {
-        //   leftDice.push_back(6);
-        // }
       }
       cnt++;
       tmp=tmp>>1;
     }
     // if more than 6 1's skip
-    if(leftDice.size()>6) continue;
+    if(leftDice.size()!=6) continue;
     for(j=1;j<(1<<10);j++) {
       // printf("j=%d\n",j);
       // set right dice values
@@ -143,18 +138,12 @@ int main() {
       while(tmp) {
         if(tmp&1) {
           rightDice.push_back(arr[cnt]);
-          // if(arr[cnt]==6) {
-          //   rightDice.push_back(9);
-          // }
-          // if(arr[cnt]==9) {
-          //   rightDice.push_back(6);
-          // }
         }
         cnt++;
         tmp=tmp>>1;
       }
       // if more than 6 1's skip
-      if(rightDice.size()>6) continue;
+      if(rightDice.size()!=6) continue;
       // print();
       if(chk()) {
         // printf(" yes\n");
@@ -163,9 +152,18 @@ int main() {
           ansSet.insert(make_pair(leftDice,rightDice));
           ans++;
         }
-        // ansSet.insert(make_pair(leftDice,rightDice));
       }
     }
+  }
+  for(it=ansSet.begin();it!=ansSet.end();it++) {
+    for(j=0;j<(it->first).size();j++) {
+      printf("%d ",(it->first)[j]);
+    }
+    printf(": ");
+    for(j=0;j<(it->second).size();j++) {
+      printf("%d ",(it->second)[j]);
+    }
+    printf("\n");
   }
   printf("%d\n",ansSet.size());
   return 0;
