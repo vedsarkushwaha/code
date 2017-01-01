@@ -5,7 +5,8 @@
 #include <cmath>
 
 #define ll long long
-#define sz 10000
+#define range 100000000000000
+#define sz 100000000
 
 using namespace std;
 
@@ -28,7 +29,21 @@ void seive_fun() {
 }
 
 bool chkPrime(ll num) {
-  return !prm[num];
+	ll itr,tmp;
+	tmp=sqrt(num)+1;
+	if(num<sz) return !prm[num];
+	else {
+		if((num%6)!=1 && (num%6)!=5) {
+			return false;
+		}
+		if((num%2)==0 || (num%3)==0 || (num%5)==0) return false;
+		for(itr=2;itr<=tmp;itr++) {
+			if(!prm[itr]) {
+				if((num%itr)==0) return false;
+			}
+		}
+		return true;
+	}
 }
 
 int main() {
@@ -45,12 +60,13 @@ int main() {
     for(i=0;i<10;i++) {
       tmpNum = vec[j].first*10 + i;
       numDigSum = vec[j].second + i;
-      if(tmpNum>sz) {
+      if(tmpNum>range) {
         flag=1;
         break;
       }
-      printf("%lld %lld\n",tmpNum,numDigSum);
-      if(chkPrime(tmpNum) && chkPrime((tmpNum/10)/numDigSum)) {
+      // printf("%lld %lld\n",tmpNum,numDigSum);
+			// if((tmpNum%1000000000)==0) printf("%lld\n",tmpNum);
+      if(chkPrime(tmpNum) && chkPrime((tmpNum/10)/(numDigSum-i))) {
         // printf("%lld\n",tmpNum);
         sm+=tmpNum;
       }
