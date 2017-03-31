@@ -37,8 +37,8 @@ bool chkDig(int num) {
     cnt++;
     num/=10;
   }
-  assert(cnt==4);
-  return true;
+  // assert(cnt==4);
+  return cnt==4;
 }
 // vector<int> getAll(int i) {
 //   vector<int> vec;
@@ -52,58 +52,61 @@ bool chkDig(int num) {
 // }
 
 int main() {
-  int i=44;
-  while(i<140) {
+  int i=10;
+  while(i<150) {
     i++;
     int tmp=fun3(i);
-    printf("3 -- %d %d\n",i,tmp);
+    // printf("3 -- %d %d\n",i,tmp);
     if(chkDig(tmp)) {
       int f3=tmp/100;
       int l3=tmp%100;
-      int j=31;
-      while(j<99) {
+      int j=21;
+      while(j<199) {
         j++;
         int tmp=fun4(j);
-        printf("4 -- %d %d\n",j,tmp);
+        // printf("4 -- %d %d\n",j,tmp);
         if(chkDig(tmp)) {
           int f4=tmp/100;
           int l4=tmp%100;
           if(l3==f4) {
-            int k=25;
-            while(k<81) {
+            int k=15;
+            while(k<91) {
               k++;
               int tmp=fun5(k);
-              printf("5 -- %d %d\n",k,tmp);
+              // printf("5 -- %d %d\n",k,tmp);
               if(chkDig(tmp)) {
                 int f5=tmp/100;
                 int l5=tmp%100;
                 if(l4==f5) {
-                  int l=22;
-                  while(l<70) {
+                  int l=12;
+                  while(l<90) {
                     l++;
                     int tmp=fun6(l);
-                    printf("6 -- %d %d\n",l,tmp);
+                    // printf("6 -- %d %d\n",l,tmp);
                     if(chkDig(tmp)) {
                       int f6=tmp/100;
                       int l6=tmp%100;
                       if(l5==f6) {
-                        int m=20;
-                        while(m<63) {
+                        // printf("Entered");
+                        int m=3;
+                        while(m<93) {
                           m++;
-                          int tmp=fun7(l);
-                          printf("7 -- %d %d\n",m,tmp);
+                          int tmp=fun7(m);
+                          // printf("7 -- %d %d\n",m,tmp);
                           if(chkDig(tmp)) {
                             int f7=tmp/100;
                             int l7=tmp%100;
                             if(l6==f7) {
-                              int n=18;
-                              while(n<58) {
+                              // printf("Entered");
+                              int n=6;
+                              while(n<99) {
                                 n++;
-                                int tmp=fun8(l);
-                                printf("8 -- %d %d\n",n,tmp);
+                                int tmp=fun8(n);
+                                // printf("8 -- %d %d\n",n,tmp);
                                 if(chkDig(tmp)) {
                                   int f8=tmp/100;
                                   int l8=tmp%100;
+                                  printf("%d %d %d %d\n",l7,f8,l8,f3);
                                   if(l7==f8 && l8==f3) {
                                     printf("%d\n",fun3(i));
                                     printf("%d\n",fun4(j));
